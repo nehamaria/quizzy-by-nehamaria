@@ -8,4 +8,11 @@ class User < ApplicationRecord
                     uniqueness: true,
                     length: { maximum: Constants::MAX_EMAIL_LENGTH },
                     format: { with: VALID_EMAIL_REGEX }
+  before_save :email_lowercase
+
+  private
+
+    def email_lowercase
+      email.downcase!
+    end
 end
