@@ -4,7 +4,9 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.create(email: "sam@example.com", first_name: "sam", last_name: "roy")
+    @user = User.new(
+      email: "sam@example.com", first_name: "sam", last_name: "roy", password: "1234qwe",
+      password_confirmation: "1234qwe")
   end
 
   def test_user_should_have_valid_role
@@ -49,6 +51,11 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  def test_reject_password_of_invalid_length
+    @user.password = ("a" * 350)
+    assert @user.invalid?
+  end
+
   def test_validation_should_reject_invalid_addresses
     invalid_emails = %w[user@example,com user_at_example.org user.name@example.
       @sam-sam.com sam@sam+exam.com fishy+#.com]
@@ -64,5 +71,23 @@ class UserTest < ActiveSupport::TestCase
     @user.email = uppercase_email
     @user.save!
     assert_equal uppercase_email.downcase, @user.email
+  end
+
+  def test_user_should_not_be_saved_without_password
+    @user.password = nil
+    assert_not @user.save
+    assert_includes @user.errors.full_messages, "Password can't be blank"
+  end
+
+  def test_user_should_not_be_saved_without_password_confirmation
+    @user.password_confirmation = nil
+    assert_not @user.save
+    assert_includes @user.errors.full_messages, "Password confirmation can't be blank"
+  end
+
+  def test_user_should_have_matching_password_and_password_confirmation
+    @user.password_confirmation = "#{@user.password}-random"
+    assert_not @user.save
+    assert_includes @user.errors.full_messages, "Password confirmation doesn't match Password"
   end
 end
