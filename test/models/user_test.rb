@@ -7,6 +7,11 @@ class UserTest < ActiveSupport::TestCase
     @user = User.create(email: "sam@example.com", first_name: "sam", last_name: "roy")
   end
 
+  def test_user_should_have_valid_role
+    @user.role = "standard"
+    assert @user.valid?
+  end
+
   def test_first_name_should_be_of_valid_length
     @user.first_name = "a" * 100
     assert @user.invalid?
