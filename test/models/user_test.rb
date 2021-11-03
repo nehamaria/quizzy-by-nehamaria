@@ -14,6 +14,12 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
+  def test_user_should_not_have_invalid_role
+    assert_raises ArgumentError do
+      @user.role = "abc"
+    end
+  end
+
   def test_first_name_should_be_of_valid_length
     @user.first_name = "a" * 100
     assert @user.invalid?

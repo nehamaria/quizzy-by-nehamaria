@@ -13,13 +13,10 @@ task populate_with_sample_data: [:environment] do
 end
 
 def create_sample_data!
-  puts 'Seeding with sample data...'
-  create_user! email: 'sam@example.com', first_name: 'Sam',last_name: 'Smith',role: 'administrator'
-  puts 'Done! Now you can login with "sam@example.com", using password "welcome"'
-end
-
-def create_user!(options = {})
-  user_attributes = { password: 'welcome', password_confirmation: 'welcome' }
-  attributes = user_attributes.merge options
-  User.create! attributes
+  puts "Seeding with sample data..."
+  User.create!(
+    email: "sam@example.com", first_name: "Sam", last_name: "Smith",
+    role: "administrator", password: "welcome", password_confirmation: "welcome"
+  )
+  puts 'Done! Now you can log in with "sam@example.com", using password "welcome"'
 end
