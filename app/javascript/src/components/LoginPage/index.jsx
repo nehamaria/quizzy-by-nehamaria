@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 import LoginForm from "./LoginForm";
 
-import { setToLocalStorage } from "../../../../helpers/storage";
 import authApi from "../../apis/auth";
 import { setAuthHeaders } from "../../apis/axios";
+import { setToLocalStorage } from "../../helpers/storage";
+// import { setToLocalStorage } from "../../helpers/storage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,6 @@ const Login = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-
     try {
       const response = await authApi.login({ login: { email, password } });
       setToLocalStorage({

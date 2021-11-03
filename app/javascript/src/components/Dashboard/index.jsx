@@ -1,31 +1,20 @@
 import React from "react";
 
-import { Button } from "@bigbinary/neetoui/v2";
-import { Toastr } from "@bigbinary/neetoui/v2";
-
-import { setToLocalStorage } from "../../../../helpers/storage";
-import authApi from "../../apis/auth";
-import { resetAuthTokens } from "../../apis/axios";
+import { Plus } from "@bigbinary/neeto-icons";
+import { Button, Typography } from "@bigbinary/neetoui/v2";
 
 const Dashboard = () => {
-  const handleLogout = async () => {
-    try {
-      await authApi.logout();
-      setToLocalStorage({
-        authToken: null,
-        email: null,
-        userId: null,
-        userName: null,
-      });
-      resetAuthTokens();
-      Toastr.success("Successfully logged out");
-      setTimeout(() => (window.location.href = "/"), 1000);
-    } catch (error) {
-      logger.error(error);
-    }
-  };
-
-  return <Button label="Log out" style="primary" onClick={handleLogout} />;
+  return (
+    <div className="flex justify-end w-screen px-8 py-8">
+      <Button
+        icon={() => <Plus />}
+        iconPosition="left"
+        label={
+          <Typography className="flex gap-x-2 p-1">Add new quiz</Typography>
+        }
+      />
+    </div>
+  );
 };
 
 export default Dashboard;
