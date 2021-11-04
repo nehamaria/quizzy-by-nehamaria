@@ -9,12 +9,12 @@ class QuizTest < ActiveSupport::TestCase
   end
 
   def test_title_should_be_of_valid_length
-    @quiz.last_name = "a" * 100
+    @quiz.title = "a" * 100
     assert @quiz.invalid?
   end
 
   def test_for_valid_title
     @quiz.title = nil
-    asser_not @quiz.save
+    assert_not @quiz.save
   end
 end
