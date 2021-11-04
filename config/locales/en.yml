@@ -32,3 +32,5 @@
 en:
   hello: "Hello world"
   successfully_created: "%{entity} was successfully created!"
+  authorization:
+    denied: "Access denied. You are not authorized to perform this action."
