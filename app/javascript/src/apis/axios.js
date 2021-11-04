@@ -41,13 +41,13 @@ const handleErrorResponse = axiosErrorObject => {
       first_name: null,
       last_name: null,
     });
-    setTimeout(() => (window.location.href = "/"), 2000);
+    setTimeout(() => (window.location.href = "/"), 3000);
   }
   Toastr.error(
     Error(axiosErrorObject.response?.data.error) || DEFAULT_ERROR_NOTIFICATION
   );
   if (axiosErrorObject.response?.status === 423) {
-    window.location.href = "/";
+    setTimeout(() => (window.location.href = "/"), 3000);
   }
 
   return Promise.reject(axiosErrorObject);
