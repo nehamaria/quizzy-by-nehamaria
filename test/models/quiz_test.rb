@@ -13,7 +13,7 @@ class QuizTest < ActiveSupport::TestCase
     assert @quiz.invalid?
   end
 
-  def test_for_valid_quiz
+  def test_for_valid_title
     @quiz.title=nil
     asser_not @quiz.save
   end
