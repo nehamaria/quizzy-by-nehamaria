@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Typography, Button, Toastr } from "@bigbinary/neetoui/v2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
 import { either, isEmpty, isNil } from "ramda";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import { registerIntercepts, setAuthHeaders } from "apis/axios";
@@ -14,6 +14,7 @@ import { initializeLogger } from "./common/logger";
 import PrivateRoute from "./components/Common/PrivateRoute";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/LoginPage";
+import AddQuiz from "./components/Quiz";
 import { getFromLocalStorage, setToLocalStorage } from "./helpers/storage";
 
 const App = () => {
@@ -72,13 +73,17 @@ const App = () => {
           )
         }
       />
-      <Route exact path="/login" component={Login} />
-      <PrivateRoute
-        component={Dashboard}
-        condition={isLoggedIn}
-        path="/"
-        redirectRoute="/login"
-      />
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/quiz/create" component={AddQuiz} />
+
+        <PrivateRoute
+          component={Dashboard}
+          condition={isLoggedIn}
+          path="/"
+          redirectRoute="/login"
+        />
+      </Switch>
     </Router>
   );
 };
