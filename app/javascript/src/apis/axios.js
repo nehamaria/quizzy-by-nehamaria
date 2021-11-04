@@ -1,10 +1,7 @@
 import { Toastr } from "@bigbinary/neetoui/v2";
 import axios from "axios";
 
-import {
-  getFromLocalStorage,
-  setToLocalStorage,
-} from "../../../helpers/storage";
+import { getFromLocalStorage, setToLocalStorage } from "../helpers/storage";
 
 const DEFAULT_ERROR_NOTIFICATION = "Something went wrong!";
 

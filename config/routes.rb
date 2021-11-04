@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     resource :sessions, only: %i[create destroy]
   end
   root "home#index"
+  # get "/dashboard" => "home#index"
   get "*path", to: "home#index", via: :all
 end

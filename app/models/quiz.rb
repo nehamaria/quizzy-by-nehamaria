@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+class Quiz < ApplicationRecord
+  validates :title, presence: true, uniqueness: true, length: { maximum: Constants::MAX_TITLE_LENGTH }
+  belongs_to :user
+end
