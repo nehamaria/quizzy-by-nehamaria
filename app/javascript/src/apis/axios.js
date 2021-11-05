@@ -25,8 +25,11 @@ const setAuthHeaders = (setLoading = () => null) => {
 };
 
 const handleSuccessResponse = response => {
-  if (response?.status === 200) {
-    Toastr.success("Logged in successfully");
+  if (response) {
+    response.success = response.status === 200;
+    if (response.data.notice) {
+      Toastr.success(response.data.notice);
+    }
   }
 
   return response;
