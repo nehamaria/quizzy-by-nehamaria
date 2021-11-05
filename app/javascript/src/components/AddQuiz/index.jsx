@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import { useHistory } from "react-router";
 
-import AddQuizForm from "./AddQuizForm";
+import quizApi from "apis/quiz";
 
-import quizApi from "../../apis/quiz";
+import AddQuizForm from "./AddQuizForm";
 
 const AddQuiz = () => {
   const [quiz, setQuiz] = useState("");

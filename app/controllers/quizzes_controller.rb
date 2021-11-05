@@ -13,7 +13,7 @@ class QuizzesController < ApplicationController
     quiz = Quiz.new(quiz_params.merge(user_id: @current_user.id))
     if quiz.save
       render status: :ok,
-        json: { notice: t("successfully_created_quiz", entity: "Quiz") }
+        json: { notice: t("successfully_created", entity: "Quiz") }
     else
       errors = quiz.errors.full_messages.to_sentence
       render status: :unprocessable_entity, json: { error: errors }
@@ -23,7 +23,7 @@ class QuizzesController < ApplicationController
   def destroy
     authorize @quiz
     if @quiz.destroy
-      render status: :ok, json: { notice: "Successfully deleted quiz" }
+      render status: :ok, json: { notice: t("successfully_deleted", entity: "Quiz") }
     else
       render status: :unprocessable_entity,
         json: { error: @quiz.errors.full_messages.to_sentence }

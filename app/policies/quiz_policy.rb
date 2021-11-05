@@ -8,7 +8,7 @@ class QuizPolicy
     @quiz = quiz
   end
 
-  def show
+  def show?
     quiz.user_id == user.id
   end
 
@@ -16,7 +16,7 @@ class QuizPolicy
     show?
   end
 
-  def update
+  def update?
     show?
   end
 

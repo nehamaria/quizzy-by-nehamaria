@@ -6,7 +6,7 @@ const EmptyState = () => {
   return (
     <div>
       <Typography style="h3" className="flex justify-center">
-        No new notes
+        No new quizzes
       </Typography>
     </div>
   );
