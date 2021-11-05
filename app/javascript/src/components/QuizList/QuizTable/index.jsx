@@ -17,6 +17,19 @@ const QuizTable = ({ quizList, destroyQuiz }) => {
       {
         Header: "Title",
         accessor: "title",
+        Cell: ({ cell }) => (
+          <Button
+            style="link"
+            to={{
+              pathname: `/${cell.row.original.id}/show`,
+            }}
+            label={
+              <Typography className="text-black">
+                {cell.row.original.title}
+              </Typography>
+            }
+          />
+        ),
       },
       {
         id: "Edit",
@@ -63,7 +76,9 @@ const QuizTable = ({ quizList, destroyQuiz }) => {
 
   return (
     <>
-      <Typography style="h2">List of Quizzes</Typography>
+      <Typography style="h2" className="pb-10">
+        List of Quizzes
+      </Typography>
       <table {...getTableProps()} className="w-full ">
         <Header headerGroups={headerGroups} />
 
