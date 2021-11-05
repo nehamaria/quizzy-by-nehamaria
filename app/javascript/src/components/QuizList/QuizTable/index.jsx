@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Delete, Edit } from "@bigbinary/neeto-icons";
 import { Button, Typography } from "@bigbinary/neetoui/v2";
 import { useTable } from "react-table";
 
+import DeleteModal from "components/DeleteModal";
+
 import Body from "./Body";
 import Header from "./Header";
 
 const QuizTable = ({ quizList, destroyQuiz }) => {
+  const [id, setId] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const columns = React.useMemo(
     () => [
       {
@@ -39,7 +43,10 @@ const QuizTable = ({ quizList, destroyQuiz }) => {
             icon={() => <Delete />}
             iconPosition="left"
             label={<Typography className="flex gap-x-2 p-1">Delete</Typography>}
-            onClick={() => destroyQuiz(cell.row.original.id)}
+            onClick={() => {
+              setId(cell.row.original.id);
+              setShowDeleteModal(true);
+            }}
           />
         ),
       },
@@ -66,6 +73,14 @@ const QuizTable = ({ quizList, destroyQuiz }) => {
           getTableBodyProps={getTableBodyProps}
         />
       </table>
+      {showDeleteModal && (
+        <DeleteModal
+          id={id}
+          showDeleteModal={showDeleteModal}
+          setShowDeleteModal={setShowDeleteModal}
+          destroyQuiz={destroyQuiz}
+        />
+      )}
     </>
   );
 };
