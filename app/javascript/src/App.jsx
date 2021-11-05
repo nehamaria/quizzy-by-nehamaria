@@ -11,10 +11,11 @@ import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import authApi from "./apis/auth";
 import { resetAuthTokens } from "./apis/axios";
 import { initializeLogger } from "./common/logger";
+import AddQuiz from "./components/AddQuiz";
 import PrivateRoute from "./components/Common/PrivateRoute";
-import Dashboard from "./components/Dashboard";
 import Login from "./components/LoginPage";
-import AddQuiz from "./components/Quiz";
+import QuizList from "./components/QuizList";
+import UpdateQuiz from "./components/UpdateQuiz";
 import { getFromLocalStorage, setToLocalStorage } from "./helpers/storage";
 
 const App = () => {
@@ -76,9 +77,14 @@ const App = () => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/quiz/create" component={AddQuiz} />
-
         <PrivateRoute
-          component={Dashboard}
+          component={UpdateQuiz}
+          condition={isLoggedIn}
+          path="/:id/update"
+          redirectRoute="/login"
+        />
+        <PrivateRoute
+          component={QuizList}
           condition={isLoggedIn}
           path="/"
           redirectRoute="/login"
