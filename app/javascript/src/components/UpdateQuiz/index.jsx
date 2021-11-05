@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { useHistory, useLocation, useParams } from "react-router";
 
-import UpdateQuizForm from "./UpdateQuizForm";
+import quizApi from "apis/quiz";
 
-import quizApi from "../../apis/quiz";
+import UpdateQuizForm from "./UpdateQuizForm";
 
 const UpdateQuiz = () => {
   const [title, setTitle] = useState("");

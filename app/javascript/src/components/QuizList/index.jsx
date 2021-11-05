@@ -4,10 +4,10 @@ import { Plus } from "@bigbinary/neeto-icons";
 import { PageLoader, Button, Typography } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
 
+import quizApi from "apis/quiz";
+
 import EmptyState from "./EmptyState";
 import QuizTable from "./QuizTable";
-
-import quizApi from "../../apis/quiz";
 
 const QuizList = () => {
   const [quizList, setQuizList] = useState([]);
