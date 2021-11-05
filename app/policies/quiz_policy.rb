@@ -8,6 +8,18 @@ class QuizPolicy
     @quiz = quiz
   end
 
+  def show
+    quiz.user_id == user.id
+  end
+
+  def destroy?
+    show?
+  end
+
+  def update
+    show?
+  end
+
   class Scope
     attr_reader :user, :scope
 
