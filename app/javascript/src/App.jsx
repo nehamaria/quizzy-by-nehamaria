@@ -15,6 +15,7 @@ import AddQuiz from "./components/AddQuiz";
 import PrivateRoute from "./components/Common/PrivateRoute";
 import Login from "./components/LoginPage";
 import QuizList from "./components/QuizList";
+import ShowQuiz from "./components/ShowQuiz";
 import UpdateQuiz from "./components/UpdateQuiz";
 import { getFromLocalStorage, setToLocalStorage } from "./helpers/storage";
 
@@ -77,6 +78,7 @@ const App = () => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/quiz/create" component={AddQuiz} />
+        <Route path="/:id/show" component={ShowQuiz} />
         <PrivateRoute
           component={UpdateQuiz}
           condition={isLoggedIn}

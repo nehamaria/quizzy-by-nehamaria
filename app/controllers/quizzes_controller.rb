@@ -2,7 +2,7 @@
 
 class QuizzesController < ApplicationController
   before_action :authenticate_user_using_x_auth_token
-  before_action :load_quiz, only: %i[destroy update]
+  before_action :load_quiz, only: %i[show destroy update]
   after_action :verify_policy_scoped, only: :index
 
   def index
@@ -38,6 +38,10 @@ class QuizzesController < ApplicationController
       render status: :unprocessable_entity,
         json: { error: @quiz.errors.full_messages.to_sentence }
     end
+  end
+
+  def show
+    authorize @quiz
   end
 
   private
