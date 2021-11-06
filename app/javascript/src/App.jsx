@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Typography, Button, Toastr } from "@bigbinary/neetoui/v2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
 import { either, isEmpty, isNil } from "ramda";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import { registerIntercepts, setAuthHeaders } from "apis/axios";
@@ -61,9 +61,11 @@ const App = () => {
       <ToastContainer />
       <Header
         title={
-          <Typography style="h1" className="px-8">
-            Quizzy
-          </Typography>
+          <Link to="/">
+            <Typography style="h1" className="px-8">
+              Quizzy
+            </Typography>
+          </Link>
         }
         className="border-b-2"
         actionBlock={
