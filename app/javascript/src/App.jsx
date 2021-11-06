@@ -11,6 +11,7 @@ import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import authApi from "./apis/auth";
 import { resetAuthTokens } from "./apis/axios";
 import { initializeLogger } from "./common/logger";
+import AddQuestion from "./components/AddQuestion";
 import AddQuiz from "./components/AddQuiz";
 import PrivateRoute from "./components/Common/PrivateRoute";
 import Login from "./components/LoginPage";
@@ -79,6 +80,7 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/quiz/create" component={AddQuiz} />
         <Route path="/:id/show" component={ShowQuiz} />
+        <Route exact path="/create/questions" component={AddQuestion} />
         <PrivateRoute
           component={UpdateQuiz}
           condition={isLoggedIn}
