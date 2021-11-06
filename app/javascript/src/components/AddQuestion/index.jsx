@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 
+import { useLocation } from "react-router";
+
 import AddQuestionForm from "./AddQuestionForm";
+
+import questionApi from "../../apis/question";
 
 const AddQuestion = () => {
   const [inputList, setInputList] = useState([{ option: "" }, { option: "" }]);
+  const [title, setTitle] = useState("");
+  const [answer, setAnswer] = useState({ value: "" });
+  const { id } = useLocation().state;
 
   const handleInputChange = (event, index) => {
-    const { option, value } = event.target;
+    const { name, value } = event.target;
     const list = [...inputList];
-    list[index][option] = value;
+
+    list[index][name] = value;
     setInputList(list);
   };
 
@@ -22,14 +30,38 @@ const AddQuestion = () => {
     setInputList([...inputList, [{ option: "" }, { option: "" }]]);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    try {
+      await questionApi.create({
+        question: {
+          title: title,
+          option1: inputList[0].option,
+          option2: inputList[1].option,
+          option3: inputList[2]?.option || null,
+          option4: inputList[3]?.option || null,
+          answer: answer.value.value,
+          quiz_id: id,
+        },
+      });
+    } catch (error) {
+      logger.error(error);
+    }
+  };
+
+  const handleSelect = event => {
+    setAnswer({ ...answer, value: event.target.value });
+  };
   return (
     <AddQuestionForm
+      title={title}
+      setTitle={setTitle}
       inputList={inputList}
       handleInputChange={handleInputChange}
       handleRemoveClick={handleRemoveClick}
       handleAddClick={handleAddClick}
       handleSubmit={handleSubmit}
+      handleSelect={handleSelect}
+      answer={answer}
     />
   );
 };
