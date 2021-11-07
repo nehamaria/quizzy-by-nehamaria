@@ -9,6 +9,7 @@ import AddQuizForm from "./AddQuizForm";
 const AddQuiz = () => {
   const [quiz, setQuiz] = useState("");
   const [loading, setLoading] = useState(false);
+
   const history = useHistory();
 
   const handleSubmit = async event => {

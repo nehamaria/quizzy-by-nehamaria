@@ -9,6 +9,10 @@ class UserTest < ActiveSupport::TestCase
       password_confirmation: "1234qwe")
   end
 
+  def test_user_should_be_valid
+    assert @user.valid?
+  end
+
   def test_user_should_have_valid_role
     @user.role = "standard"
     assert @user.valid?
@@ -34,7 +38,6 @@ class UserTest < ActiveSupport::TestCase
     @user.email = ""
     assert_not @user.valid?
 
-    @user.save
     assert_includes @user.errors.full_messages, "Email can't be blank", "Email is invalid"
   end
 

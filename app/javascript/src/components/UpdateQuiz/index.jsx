@@ -32,7 +32,6 @@ const UpdateQuiz = () => {
     <UpdateQuizForm
       handleSubmit={handleSubmit}
       setTitle={setTitle}
-      title={title}
       loading={loading}
     />
   );

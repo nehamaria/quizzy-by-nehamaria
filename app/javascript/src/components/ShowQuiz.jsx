@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Plus } from "@bigbinary/neeto-icons";
 import { PageLoader, Typography, Button } from "@bigbinary/neetoui/v2";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 import quizApi from "apis/quiz";
 
@@ -21,7 +22,6 @@ const ShowQuiz = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     showQuizDetails();
   }, []);
@@ -36,14 +36,20 @@ const ShowQuiz = () => {
         <Typography style="h2" className="pl-8 ">
           {quizDetails.title}
         </Typography>
-
-        <Button
-          label={
-            <Typography className=" gap-x-2 p-1 ">Add questions</Typography>
-          }
-          icon={() => <Plus />}
-          iconPosition="left"
-        />
+        <Link
+          to={{
+            pathname: "/create/questions",
+            state: { id: id, quizName: quizDetails.title },
+          }}
+        >
+          <Button
+            label={
+              <Typography className=" gap-x-2 p-1 ">Add questions</Typography>
+            }
+            icon={() => <Plus />}
+            iconPosition="left"
+          />
+        </Link>
       </div>
       <div>
         <Typography style="body1" className="text-center pt-40 ">
