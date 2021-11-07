@@ -67,7 +67,6 @@ const QuizTable = ({ quizList, destroyQuiz }) => {
     []
   );
   const data = React.useMemo(() => quizList, [quizList]);
-  // console.log(quizList);
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,

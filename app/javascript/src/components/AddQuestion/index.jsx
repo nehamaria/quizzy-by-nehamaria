@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { Typography } from "@bigbinary/neetoui/v2";
 import { useLocation } from "react-router";
 
 import AddQuestionForm from "./AddQuestionForm";
@@ -10,7 +11,8 @@ const AddQuestion = () => {
   const [inputList, setInputList] = useState([{ option: "" }, { option: "" }]);
   const [title, setTitle] = useState("");
   const [answer, setAnswer] = useState({ value: "" });
-  const { id } = useLocation().state;
+
+  const { id, quizName } = useLocation().state;
 
   const handleInputChange = (event, index) => {
     const { name, value } = event.target;
@@ -52,17 +54,22 @@ const AddQuestion = () => {
     setAnswer({ ...answer, value: event.target.value });
   };
   return (
-    <AddQuestionForm
-      title={title}
-      setTitle={setTitle}
-      inputList={inputList}
-      handleInputChange={handleInputChange}
-      handleRemoveClick={handleRemoveClick}
-      handleAddClick={handleAddClick}
-      handleSubmit={handleSubmit}
-      handleSelect={handleSelect}
-      answer={answer}
-    />
+    <div>
+      <Typography style="h1" className="mt-10 pl-40">
+        {quizName}
+      </Typography>
+      <AddQuestionForm
+        title={title}
+        setTitle={setTitle}
+        inputList={inputList}
+        handleInputChange={handleInputChange}
+        handleRemoveClick={handleRemoveClick}
+        handleAddClick={handleAddClick}
+        handleSubmit={handleSubmit}
+        handleSelect={handleSelect}
+        answer={answer}
+      />
+    </div>
   );
 };
 

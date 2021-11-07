@@ -22,7 +22,6 @@ const ShowQuiz = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     showQuizDetails();
   }, []);
@@ -37,7 +36,12 @@ const ShowQuiz = () => {
         <Typography style="h2" className="pl-8 ">
           {quizDetails.title}
         </Typography>
-        <Link to={{ pathname: "/create/questions", state: { id: id } }}>
+        <Link
+          to={{
+            pathname: "/create/questions",
+            state: { id: id, quizName: quizDetails.title },
+          }}
+        >
           <Button
             label={
               <Typography className=" gap-x-2 p-1 ">Add questions</Typography>

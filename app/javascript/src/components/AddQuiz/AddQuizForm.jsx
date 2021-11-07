@@ -4,8 +4,8 @@ import { Typography, Input, Button } from "@bigbinary/neetoui/v2";
 
 const AddQuizForm = ({ handleSubmit, setQuiz, loading }) => {
   return (
-    <div className="pl-12 space-y-8">
-      <Typography style="h1" className="mt-10">
+    <div className="p-12 space-y-8">
+      <Typography style="h1" className="mt-7">
         Add new quiz
       </Typography>
       <form className="flex flex-col space-y-3 " onSubmit={handleSubmit}>

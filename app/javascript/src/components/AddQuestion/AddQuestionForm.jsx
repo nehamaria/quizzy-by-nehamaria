@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Button, Input, Select } from "@bigbinary/neetoui/v2";
+import { Plus } from "@bigbinary/neeto-icons";
+import { Button, Input, Select, Typography } from "@bigbinary/neetoui/v2";
 
 const AddQuestionForm = ({
   inputList,
@@ -14,29 +15,35 @@ const AddQuestionForm = ({
   answer,
 }) => {
   return (
-    <div>
-      <div className=" pt-40 pl-10  ">
+    <div className="flex w-full justify-center">
+      <div className="flex w-1/2 flex-col justify-start space-y-5">
         <Input
           type="text"
           name="Title"
+          size="large"
           value={title}
-          label="Question"
-          className="w-64"
+          label={<Typography style="h3">Question</Typography>}
           onChange={e => setTitle(e.target.value)}
         />
 
         {inputList.map((x, i) => {
           return (
-            <div className=" flex w-64 space-y-5 pt-3 pb-3 space-x-3" key={i}>
+            <div className="flex space-y-5 space-x-3" key={i}>
               <Input
                 name={`option`}
                 value={x.option}
-                label={`Option ${i + 1}`}
+                size="large"
+                label={
+                  <Typography style="body1" weight="semi-bold">{`Option ${
+                    i + 1
+                  }`}</Typography>
+                }
                 onChange={event => handleInputChange(event, i)}
               />
-              {inputList.length !== 2 && (
+              {inputList.length !== 2 && i > 1 && (
                 <Button
-                  style="primary"
+                  style="danger"
+                  size="default"
                   label="Remove"
                   onClick={() => handleRemoveClick(i)}
                 />
@@ -46,15 +53,25 @@ const AddQuestionForm = ({
         })}
         {inputList.length < 4 && (
           <Button
-            style="primary"
-            label="Add New Option"
+            style="secondary"
+            className="self-start"
+            label={
+              <Typography style="body1" weight="semi-bold">
+                Add Option
+              </Typography>
+            }
+            icon={() => <Plus size={20} className="mr-2" />}
+            iconPosition="left"
             onClick={handleAddClick}
           />
         )}
-      </div>
-      <div className="w-64 pl-10 mt-5">
         <Select
-          label="Correct Answer"
+          label={
+            <Typography style="body1" weight="semi-bold">
+              Correct Answer
+            </Typography>
+          }
+          placeholder="Select an Option"
           value={answer.value}
           onChange={selectedOption => {
             let event = {
@@ -66,9 +83,16 @@ const AddQuestionForm = ({
             return { value: option.option, label: `Option ${index + 1}` };
           })}
         />
-      </div>
-      <div className="pt-5 pl-10 ">
-        <Button type="submit" label="Submit" onClick={handleSubmit} />
+        <Button
+          style="primary"
+          label={
+            <Typography style="body1" weight="semi-bold">
+              Submit
+            </Typography>
+          }
+          onClick={handleSubmit}
+          className="self-start p-3"
+        />
       </div>
     </div>
   );
