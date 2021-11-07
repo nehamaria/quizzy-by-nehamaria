@@ -9,6 +9,10 @@ class UserTest < ActiveSupport::TestCase
       password_confirmation: "1234qwe")
   end
 
+  def test_user_should_be_valid
+    assert @user.valid?
+  end
+
   def test_user_should_have_valid_role
     @user.role = "standard"
     assert @user.valid?
