@@ -34,7 +34,6 @@ class UserTest < ActiveSupport::TestCase
     @user.email = ""
     assert_not @user.valid?
 
-    @user.save
     assert_includes @user.errors.full_messages, "Email can't be blank", "Email is invalid"
   end
 

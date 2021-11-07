@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
         json: { notice: t("successfully_created", entity: "Question") }
     else
       errors = question.errors.full_messages.to_sentence
-      render status: :unprocessable_entity, json: { error: errors }
+      render status: :unprocessable_entity, json: { error: error }
     end
   end
 
