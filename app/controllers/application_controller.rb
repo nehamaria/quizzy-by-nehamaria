@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
         error: "Could not authenticate with the provided credentials"
       }
     end
-    end
+  end
 
   private
 

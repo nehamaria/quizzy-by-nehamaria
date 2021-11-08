@@ -13,7 +13,6 @@ const ShowQuiz = () => {
   const [quizDetails, setQuizDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-
   const showQuizDetails = async () => {
     try {
       const response = await quizApi.show(id);
@@ -57,6 +56,7 @@ const ShowQuiz = () => {
       </div>
       {quizDetails.questions.length ? (
         <QuestionList
+          quizId={quizDetails.id}
           questionList={quizDetails.questions}
           showQuizDetails={showQuizDetails}
         />

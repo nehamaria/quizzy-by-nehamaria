@@ -2,17 +2,17 @@ import React, { useState } from "react";
 
 import { Delete, Edit } from "@bigbinary/neeto-icons";
 import { Typography, Button } from "@bigbinary/neetoui/v2";
+import { Link } from "react-router-dom";
 
 import questionApi from "apis/question";
 import DeleteModal from "components/DeleteModal";
 
 import Options from "./Options";
 
-const QuestionList = ({ questionList, showQuizDetails }) => {
+const QuestionList = ({ quizId, questionList, showQuizDetails }) => {
   const [id, setId] = useState("");
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
   const deleteQuestion = async () => {
     try {
       setShowDeleteModal(true);
@@ -34,15 +34,17 @@ const QuestionList = ({ questionList, showQuizDetails }) => {
                 Question {index + 1}
               </Typography>
               <Typography style="h5">{question.title}</Typography>
-              <Button
-                style="secondary"
-                className="neeto-ui-text-error"
-                icon={() => <Edit />}
-                iconPosition="left"
-                label={
-                  <Typography className="flex gap-x-2 p-1">Edit</Typography>
-                }
-              />
+              <Link to={`/quiz/${quizId}/question/${question.question_id}`}>
+                <Button
+                  style="secondary"
+                  className="neeto-ui-text-error"
+                  icon={() => <Edit />}
+                  iconPosition="left"
+                  label={
+                    <Typography className="flex gap-x-2 p-1">Edit</Typography>
+                  }
+                />
+              </Link>
               <Button
                 style="secondary"
                 size="default"
