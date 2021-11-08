@@ -2,6 +2,7 @@ import React from "react";
 
 import { Plus } from "@bigbinary/neeto-icons";
 import { Button, Input, Select, Typography } from "@bigbinary/neetoui/v2";
+import { Link } from "react-router-dom";
 
 const AddQuestionForm = ({
   inputList,
@@ -83,16 +84,18 @@ const AddQuestionForm = ({
             return { value: option.option, label: `Option ${index + 1}` };
           })}
         />
-        <Button
-          style="primary"
-          label={
-            <Typography style="body1" weight="semi-bold">
-              Submit
-            </Typography>
-          }
-          onClick={handleSubmit}
-          className="self-start p-3"
-        />
+        <Link to="/">
+          <Button
+            style="primary"
+            label={
+              <Typography style="body1" weight="semi-bold">
+                Submit
+              </Typography>
+            }
+            onClick={handleSubmit}
+            className="self-start p-3"
+          />
+        </Link>
       </div>
     </div>
   );

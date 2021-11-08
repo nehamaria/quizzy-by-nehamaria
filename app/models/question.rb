@@ -6,6 +6,7 @@ class Question < ApplicationRecord
   validates :option2, presence: true
   validates :answer, presence: true
   validate :answer_inclusion
+  belongs_to :quiz
 
   private
 

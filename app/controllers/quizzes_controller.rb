@@ -42,6 +42,7 @@ class QuizzesController < ApplicationController
 
   def show
     authorize @quiz
+    @questions = @quiz.question
   end
 
   private

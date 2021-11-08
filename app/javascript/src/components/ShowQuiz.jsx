@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 import quizApi from "apis/quiz";
 
+import QuestionList from "./ShowQuestionList";
+
 const ShowQuiz = () => {
   const [quizDetails, setQuizDetails] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,6 +24,7 @@ const ShowQuiz = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     showQuizDetails();
   }, []);
@@ -48,14 +51,22 @@ const ShowQuiz = () => {
             }
             icon={() => <Plus />}
             iconPosition="left"
+            className="mb-3"
           />
         </Link>
       </div>
-      <div>
-        <Typography style="body1" className="text-center pt-40 ">
-          There are no questions in the quiz
-        </Typography>
-      </div>
+      {quizDetails.questions.length ? (
+        <QuestionList
+          questionList={quizDetails.questions}
+          showQuizDetails={showQuizDetails}
+        />
+      ) : (
+        <div>
+          <Typography style="body1" className="text-center pt-40 ">
+            There are no questions in the quiz
+          </Typography>
+        </div>
+      )}
     </div>
   );
 };
