@@ -38,21 +38,29 @@ const ShowQuiz = () => {
         <Typography style="h2" className="pl-8 ">
           {quizDetails.title}
         </Typography>
-        <Link
-          to={{
-            pathname: "/create/questions",
-            state: { id: id, quizName: quizDetails.title },
-          }}
-        >
-          <Button
-            label={
-              <Typography className=" gap-x-2 p-1 ">Add questions</Typography>
-            }
-            icon={() => <Plus />}
-            iconPosition="left"
-            className="mb-3"
-          />
-        </Link>
+        <div className="flex justify-end space-x-4 pr-4">
+          <Link
+            to={{
+              pathname: "/create/questions",
+              state: { id: id, quizName: quizDetails.title },
+            }}
+          >
+            <Button
+              label={
+                <Typography className=" gap-x-2 p-1 ">Add questions</Typography>
+              }
+              icon={() => <Plus />}
+              iconPosition="left"
+              className="mb-3"
+            />
+          </Link>
+          {quizDetails.questions.length && (
+            <Button
+              className="mb-3"
+              label={<Typography className="p-1">Publish</Typography>}
+            />
+          )}
+        </div>
       </div>
       {quizDetails.questions.length ? (
         <QuestionList
