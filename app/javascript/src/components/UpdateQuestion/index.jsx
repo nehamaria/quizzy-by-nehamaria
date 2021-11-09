@@ -67,7 +67,14 @@ const UpdateQuestion = () => {
           })
           .filter(({ option }) => option)
       );
-      setAnswer(response.data.question.correct_answer);
+      setAnswer({
+        value: response.data.question.correct_answer,
+        label: `Option ${
+          Object.values(response.data.question.option).indexOf(
+            response.data.question.correct_answer
+          ) + 1
+        }`,
+      });
       setTitle(response.data.question.title);
     } catch (error) {
       logger.error(error);

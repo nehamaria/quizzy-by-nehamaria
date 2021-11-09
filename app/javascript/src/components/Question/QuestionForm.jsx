@@ -72,7 +72,7 @@ const QuestionForm = ({
             </Typography>
           }
           placeholder="Select an Option"
-          value={answer.value}
+          value={answer}
           onChange={selectedOption => {
             let event = {
               target: { value: selectedOption },

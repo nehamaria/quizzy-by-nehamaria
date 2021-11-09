@@ -54,7 +54,7 @@ const ShowQuiz = () => {
               className="mb-3"
             />
           </Link>
-          {quizDetails.questions.length && (
+          {quizDetails.questions.length > 0 && (
             <Button
               className="mb-3"
               label={<Typography className="p-1">Publish</Typography>}

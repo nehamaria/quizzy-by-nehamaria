@@ -7,11 +7,11 @@ import quizApi from "apis/quiz";
 import UpdateQuizForm from "./UpdateQuizForm";
 
 const UpdateQuiz = () => {
-  const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { id } = useParams();
   const currentState = useLocation().state;
+  const [title, setTitle] = useState(currentState?.title || "");
 
   useEffect(() => {
     setTitle(currentState?.title || "");
@@ -33,6 +33,7 @@ const UpdateQuiz = () => {
       handleSubmit={handleSubmit}
       setTitle={setTitle}
       loading={loading}
+      title={title}
     />
   );
 };
