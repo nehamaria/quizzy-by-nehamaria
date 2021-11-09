@@ -2,17 +2,23 @@
 
 class QuestionTest < ActiveSupport::TestCase
   def setup
+    @user = User.create(
+      email: "sam@example.com", first_name: "sam", last_name: "roy", password: "1234qwe",
+      password_confirmation: "1234qwe"
+    )
+    @quiz = Quiz.create(
+      title: "This is the first title", user_id: @user.id)
     @question = Question.new(
       title: "which planet is closest to sun",
-      quiz_id: 1,
-      user_id: 1,
+      quiz_id: @quiz.id,
+      user_id: @user.id,
       option1: "Option 1",
       option2: "Option 2",
       option3: "Option 3",
       option4: "Option 4",
       answer: "Option 1"
     )
-  end
+    end
 
   def test_valid_question
     assert @question.valid?
@@ -43,12 +49,12 @@ class QuestionTest < ActiveSupport::TestCase
   end
 
   def test_question_can_be_valid_and_saved_without_option3
-    @question.option3 = ""
+    @question.option3 = nil
     assert @question.valid?
   end
 
   def test_question_can_be_valid_and_saved_without_option4
-    @question.option4 = ""
+    @question.option4 = nil
     assert @question.valid?
   end
 
