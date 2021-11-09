@@ -93,6 +93,7 @@ const QuizTable = ({ quizList, destroyQuiz }) => {
           showDeleteModal={showDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
           destroyQuiz={destroyQuiz}
+          item="quiz"
         />
       )}
     </>

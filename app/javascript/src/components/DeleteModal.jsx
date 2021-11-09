@@ -7,16 +7,17 @@ const DeleteModal = ({
   showDeleteModal,
   setShowDeleteModal,
   destroyQuiz,
+  item,
 }) => {
   return (
     <div>
       <Modal isOpen={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
         <Modal.Header>
-          <Typography style="h2">Delete Quiz</Typography>
+          <Typography style="h2">Delete {item}</Typography>
         </Modal.Header>
         <Modal.Body>
           <Typography style="body2" lineHeight="normal">
-            Do you want to delete the quiz?
+            Do you want to delete the {item}?
           </Typography>
         </Modal.Body>
         <Modal.Footer className="space-x-2">

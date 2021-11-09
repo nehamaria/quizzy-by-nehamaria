@@ -3,7 +3,7 @@ import React from "react";
 import { Plus } from "@bigbinary/neeto-icons";
 import { Button, Input, Select, Typography } from "@bigbinary/neetoui/v2";
 
-const AddQuestionForm = ({
+const QuestionForm = ({
   inputList,
   handleInputChange,
   handleRemoveClick,
@@ -98,4 +98,4 @@ const AddQuestionForm = ({
   );
 };
 
-export default AddQuestionForm;
+export default QuestionForm;

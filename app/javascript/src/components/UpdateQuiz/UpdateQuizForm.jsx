@@ -2,7 +2,7 @@ import React from "react";
 
 import { Input, Button, Typography } from "@bigbinary/neetoui/v2";
 
-const UpdateQuizForm = ({ handleSubmit, setTitle, loading }) => {
+const UpdateQuizForm = ({ handleSubmit, setTitle, loading, title }) => {
   return (
     <div className="p-12 space-y-8">
       <Typography style="h1" className="mt-7 ">
@@ -10,6 +10,7 @@ const UpdateQuizForm = ({ handleSubmit, setTitle, loading }) => {
       </Typography>
       <form className="flex flex-col space-y-3 " onSubmit={handleSubmit}>
         <Input
+          value={title}
           type="text"
           label="Update Title"
           className="w-1/3"

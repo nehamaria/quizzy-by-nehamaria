@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 
 import { Typography } from "@bigbinary/neetoui/v2";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
-import AddQuestionForm from "./AddQuestionForm";
+import questionApi from "apis/question";
 
-import questionApi from "../../apis/question";
+import QuestionForm from "./QuestionForm";
 
 const AddQuestion = () => {
   const [inputList, setInputList] = useState([{ option: "" }, { option: "" }]);
   const [title, setTitle] = useState("");
   const [answer, setAnswer] = useState({ value: "" });
+  const history = useHistory();
 
   const { id, quizName } = useLocation().state;
 
@@ -45,6 +46,7 @@ const AddQuestion = () => {
           quiz_id: id,
         },
       });
+      history.push(`/${id}/show`);
     } catch (error) {
       logger.error(error);
     }
@@ -58,7 +60,7 @@ const AddQuestion = () => {
       <Typography style="h1" className="mt-10 pl-40">
         {quizName}
       </Typography>
-      <AddQuestionForm
+      <QuestionForm
         title={title}
         setTitle={setTitle}
         inputList={inputList}
