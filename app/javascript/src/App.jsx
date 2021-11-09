@@ -14,6 +14,7 @@ import { initializeLogger } from "./common/logger";
 import AddQuiz from "./components/AddQuiz";
 import PrivateRoute from "./components/Common/PrivateRoute";
 import Login from "./components/LoginPage";
+import PublicRoute from "./components/PublicRoute";
 import AddQuestion from "./components/Question";
 import QuizList from "./components/QuizList";
 import ShowQuiz from "./components/ShowQuiz";
@@ -89,6 +90,7 @@ const App = () => {
           path="/quiz/:quizId/question/:questionId"
           component={UpdateQuestion}
         />
+        <Route exact path="/public/:slug" component={PublicRoute} />
         <PrivateRoute
           component={UpdateQuiz}
           condition={isLoggedIn}

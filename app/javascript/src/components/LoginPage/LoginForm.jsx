@@ -1,8 +1,11 @@
 import React from "react";
 
-import { Input, Typography, Button } from "@bigbinary/neetoui/v2";
+import { Typography, Button } from "@bigbinary/neetoui/v2";
+import { Input } from "@bigbinary/neetoui/v2/formik";
+import { Formik, Form } from "formik";
+import * as yup from "yup";
 
-const LoginForm = ({ setEmail, setPassword, loading, handleSubmit }) => {
+const LoginForm = ({ handleSubmit }) => {
   return (
     <div
       className="flex items-center justify-center min-h-screen
@@ -15,27 +18,38 @@ const LoginForm = ({ setEmail, setPassword, loading, handleSubmit }) => {
         >
           Login
         </h2>
-
-        <form className="flex flex-col mt-8 gap-y-6" onSubmit={handleSubmit}>
-          <Input
-            label="Email"
-            type="email"
-            placeholder="sam@example.com"
-            onChange={e => setEmail(e.target.value)}
-          />
-          <Input
-            label="Password"
-            type="password"
-            placeholder="********"
-            onChange={e => setPassword(e.target.value)}
-          />
-          <Button
-            type="submit"
-            label={<Typography className="px-4">Sign In</Typography>}
-            className="self-center"
-            loading={loading}
-          />
-        </form>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={handleSubmit}
+          validationSchema={yup.object({
+            email: yup.string().email().required("Email is required"),
+            password: yup.string().required("Please provide a valid password"),
+          })}
+        >
+          {({ isSubmitting }) => (
+            <Form className="flex flex-col mt-8 gap-y-6">
+              <Input
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="sam@example.com"
+              />
+              <Input
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="********"
+              />
+              <Button
+                type="submit"
+                label={<Typography className="px-4">Sign In</Typography>}
+                className="self-center"
+                disabled={isSubmitting}
+                loading={isSubmitting}
+              />
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );
