@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Plus } from "@bigbinary/neeto-icons";
+import { Plus, CheckCircle } from "@bigbinary/neeto-icons";
 import { PageLoader, Typography, Button } from "@bigbinary/neetoui/v2";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -24,6 +24,15 @@ const ShowQuiz = () => {
     }
   };
 
+  const handlePublish = async () => {
+    try {
+      await quizApi.update(id, { quiz: { publish: "published" } });
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (error) {
+      logger.error(error);
+    }
+  };
+
   useEffect(() => {
     showQuizDetails();
   }, []);
@@ -34,8 +43,8 @@ const ShowQuiz = () => {
 
   return (
     <div>
-      <div className="flex justify-between pt-24 w-full ">
-        <Typography style="h2" className="pl-8 ">
+      <div className="flex justify-between pt-24 w-full mb-1">
+        <Typography style="h1" className="pl-8 ">
           {quizDetails.title}
         </Typography>
         <div className="flex justify-end space-x-4 pr-4">
@@ -54,20 +63,34 @@ const ShowQuiz = () => {
               className="mb-3"
             />
           </Link>
-          {quizDetails.questions.length > 0 && (
-            <Button
-              className="mb-3"
-              label={<Typography className="p-1">Publish</Typography>}
-            />
-          )}
+          {quizDetails.questions.length > 0 &&
+            quizDetails.publish === "not_publish" && (
+              <Button
+                className="mb-3"
+                label={<Typography className="p-1">Publish</Typography>}
+                onClick={handlePublish}
+              />
+            )}
         </div>
       </div>
       {quizDetails.questions.length ? (
-        <QuestionList
-          quizId={quizDetails.id}
-          questionList={quizDetails.questions}
-          showQuizDetails={showQuizDetails}
-        />
+        <>
+          {quizDetails.publish === "published" && (
+            <div>
+              <Typography className="inline-flex ml-5 gap-x-1 mb-5" style="h4">
+                <CheckCircle size={18} />
+                Published,your public link is - {window.location.origin}/public/
+                {quizDetails.slug}
+              </Typography>
+            </div>
+          )}
+
+          <QuestionList
+            quizId={quizDetails.id}
+            questionList={quizDetails.questions}
+            showQuizDetails={showQuizDetails}
+          />
+        </>
       ) : (
         <div>
           <Typography style="body1" className="text-center pt-40 ">
