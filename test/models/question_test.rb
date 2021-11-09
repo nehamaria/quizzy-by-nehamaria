@@ -5,6 +5,7 @@ class QuestionTest < ActiveSupport::TestCase
     @question = Question.new(
       title: "which planet is closest to sun",
       quiz_id: 1,
+      user_id: 1,
       option1: "Option 1",
       option2: "Option 2",
       option3: "Option 3",
