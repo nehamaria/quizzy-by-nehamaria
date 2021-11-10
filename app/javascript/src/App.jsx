@@ -6,21 +6,20 @@ import { either, isEmpty, isNil } from "ramda";
 import { Route, Switch, BrowserRouter as Router, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import authApi from "apis/auth";
 import { registerIntercepts, setAuthHeaders } from "apis/axios";
-
-import authApi from "./apis/auth";
-import { resetAuthTokens } from "./apis/axios";
-import { initializeLogger } from "./common/logger";
-import AddQuiz from "./components/AddQuiz";
-import PrivateRoute from "./components/Common/PrivateRoute";
-import Login from "./components/LoginPage";
-import PublicRouteForm from "./components/PublicRoute/Form";
-import AddQuestion from "./components/Question";
-import QuizList from "./components/QuizList";
-import ShowQuiz from "./components/ShowQuiz";
-import UpdateQuestion from "./components/UpdateQuestion";
-import UpdateQuiz from "./components/UpdateQuiz";
-import { getFromLocalStorage, setToLocalStorage } from "./helpers/storage";
+import { resetAuthTokens } from "apis/axios";
+import { initializeLogger } from "common/logger";
+import AddQuiz from "components/AddQuiz";
+import Login from "components/Authentication";
+import PrivateRoute from "components/Common/PrivateRoute";
+import PublicRouteForm from "components/PublicRoute/Form";
+import AddQuestion from "components/Question";
+import QuizList from "components/QuizList";
+import ShowQuiz from "components/ShowQuiz";
+import UpdateQuestion from "components/UpdateQuestion";
+import UpdateQuiz from "components/UpdateQuiz";
+import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
