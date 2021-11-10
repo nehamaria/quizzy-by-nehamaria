@@ -45,7 +45,7 @@ const UpdateQuestion = () => {
           quiz_id: quizId,
         },
       });
-      history.push(`/${quizId}/show`);
+      history.push(`/quizzes/${quizId}/show`);
     } catch (error) {
       logger.error(error);
     }

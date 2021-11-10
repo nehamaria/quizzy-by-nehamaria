@@ -83,7 +83,7 @@ const App = () => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/quiz/create" component={AddQuiz} />
-        <Route path="/:id/show" component={ShowQuiz} />
+        <Route exact path="/quizzes/:id/show" component={ShowQuiz} />
         <Route exact path="/create/questions" component={AddQuestion} />
         <Route
           exact

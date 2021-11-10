@@ -10,14 +10,14 @@ import EmptyState from "./EmptyState";
 import QuizTable from "./QuizTable";
 
 const QuizList = () => {
-  const [quizList, setQuizList] = useState([]);
+  const [quizzes, setQuizzes] = useState([]);
   const [pageLoading, setPageLoading] = useState(true);
 
   const fetchQuizDetails = async () => {
     setPageLoading(true);
     try {
       const response = await quizApi.quizList();
-      setQuizList(response.data);
+      setQuizzes(response.data);
     } catch (error) {
       logger.error(error);
     } finally {
@@ -58,8 +58,8 @@ const QuizList = () => {
             />
           </Link>
         </div>
-        {quizList.length ? (
-          <QuizTable quizList={quizList} destroyQuiz={destroyQuiz} />
+        {quizzes.length ? (
+          <QuizTable quizzes={quizzes} destroyQuiz={destroyQuiz} />
         ) : (
           <EmptyState />
         )}
