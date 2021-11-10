@@ -28,7 +28,7 @@ class QuizTest < ActiveSupport::TestCase
     assert @quiz.valid?
   end
 
-  def test_user_should_not_be_valid_without_user
+  def test_quiz_user_should_not_be_valid_without_user_id
     @quiz.user_id = nil
     assert_not @quiz.valid?
     assert_equal @quiz.errors.full_messages, ["User must exist"]

@@ -46,7 +46,7 @@ const AddQuestion = () => {
           quiz_id: id,
         },
       });
-      history.push(`/${id}/show`);
+      history.push(`/quizzes/${id}/show`);
     } catch (error) {
       logger.error(error);
     }

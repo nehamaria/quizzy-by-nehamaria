@@ -9,7 +9,7 @@ import DeleteModal from "components/DeleteModal";
 import Body from "./Body";
 import Header from "./Header";
 
-const QuizTable = ({ quizList, destroyQuiz }) => {
+const QuizTable = ({ quizzes, destroyQuiz }) => {
   const [id, setId] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const columns = React.useMemo(
@@ -21,7 +21,7 @@ const QuizTable = ({ quizList, destroyQuiz }) => {
           <Button
             style="link"
             to={{
-              pathname: `/${cell.row.original.id}/show`,
+              pathname: `quizzes/${cell.row.original.id}/show`,
             }}
             label={
               <Typography className="text-black">
@@ -66,7 +66,7 @@ const QuizTable = ({ quizList, destroyQuiz }) => {
     ],
     []
   );
-  const data = React.useMemo(() => quizList, [quizList]);
+  const data = React.useMemo(() => quizzes, [quizzes]);
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,

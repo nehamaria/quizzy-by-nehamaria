@@ -10,7 +10,7 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    quiz = Quiz.new(quiz_params.merge(user_id: @current_user.id))
+    quiz = @current_user.quizzes.new(quiz_params)
     if quiz.save
       render status: :ok,
         json: { notice: t("successfully_created", entity: "Quiz") }
@@ -52,7 +52,9 @@ class QuizzesController < ApplicationController
     end
 
     def load_quiz
-      @quiz = Quiz.find_by(id: params[:id])
+      @quiz = @current_user.quizzes.find_by(id: params[:id])
+      # @quiz = Quiz.find_by(@current_user.quizzes)
+
       unless @quiz
         render status: :not_found, json: { error: t("quiz.not_found") }
       end
