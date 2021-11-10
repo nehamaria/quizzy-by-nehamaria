@@ -12,7 +12,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_09_152305) do
+ActiveRecord::Schema.define(version: 2021_11_10_072437) do
+
+  create_table "attempted_answers", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "attempt_id", null: false
+    t.string "attempted_answer", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attempt_id"], name: "index_attempted_answers_on_attempt_id"
+    t.index ["question_id"], name: "index_attempted_answers_on_question_id"
+  end
+
+  create_table "attempts", force: :cascade do |t|
+    t.integer "quiz_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "submit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id"], name: "index_attempts_on_quiz_id"
+    t.index ["user_id"], name: "index_attempts_on_user_id"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.string "title", null: false
@@ -50,6 +70,10 @@ ActiveRecord::Schema.define(version: 2021_11_09_152305) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "attempted_answers", "attempts"
+  add_foreign_key "attempted_answers", "questions"
+  add_foreign_key "attempts", "quizzes"
+  add_foreign_key "attempts", "users"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "questions", "users"
   add_foreign_key "quizzes", "users"

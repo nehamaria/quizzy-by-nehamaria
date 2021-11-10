@@ -1,7 +1,10 @@
 import React from "react";
 
 const PublicRoute = () => {
-  return <div>Hello</div>;
+  // const handleSubmit=()=>{
+
+  // }
+  return <div></div>;
 };
 
 export default PublicRoute;
