@@ -8,7 +8,7 @@ import quizApi from "apis/quiz";
 
 import QuizTable from "./QuizTable";
 
-import EmptyState from "../Common/EmptyState";
+import EmptyState from "../../Common/EmptyState";
 
 const QuizList = () => {
   const [quizzes, setQuizzes] = useState([]);

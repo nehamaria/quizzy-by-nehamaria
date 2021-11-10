@@ -10,15 +10,15 @@ import authApi from "apis/auth";
 import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import { resetAuthTokens } from "apis/axios";
 import { initializeLogger } from "common/logger";
-import AddQuiz from "components/AddQuiz";
-import Login from "components/Authentication";
+import Login from "components/Authentication/Login";
 import PrivateRoute from "components/Common/PrivateRoute";
 import PublicRouteForm from "components/PublicRoute/Form";
 import AddQuestion from "components/Question";
-import QuizList from "components/QuizList";
-import ShowQuiz from "components/ShowQuiz";
+import AddQuiz from "components/Quiz/AddQuiz";
+import QuizList from "components/Quiz/QuizList";
+import ShowQuiz from "components/Quiz/ShowQuiz";
+import UpdateQuiz from "components/Quiz/UpdateQuiz";
 import UpdateQuestion from "components/UpdateQuestion";
-import UpdateQuiz from "components/UpdateQuiz";
 import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 
 const App = () => {
