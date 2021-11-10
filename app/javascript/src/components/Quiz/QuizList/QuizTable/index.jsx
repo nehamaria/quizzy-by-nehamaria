@@ -4,7 +4,7 @@ import { Delete, Edit } from "@bigbinary/neeto-icons";
 import { Button, Typography } from "@bigbinary/neetoui/v2";
 import { useTable } from "react-table";
 
-import DeleteModal from "components/DeleteModal";
+import DeleteModal from "components/Common/DeleteModal";
 
 import Body from "./Body";
 import Header from "./Header";

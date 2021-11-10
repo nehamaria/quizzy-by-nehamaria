@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import { PageLoader } from "@bigbinary/neetoui/v2";
 import { useHistory, useParams } from "react-router";
 
-import questionApi from "../../apis/question";
-import QuestionForm from "../Question/QuestionForm";
+import QuestionForm from "./QuestionForm";
+
+import questionApi from "../../../apis/question";
 
 const UpdateQuestion = () => {
   const { quizId, questionId } = useParams();

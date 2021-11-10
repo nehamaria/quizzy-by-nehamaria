@@ -5,7 +5,7 @@ import { Typography, Button } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
 
 import questionApi from "apis/question";
-import DeleteModal from "components/DeleteModal";
+import DeleteModal from "components/Common/DeleteModal";
 
 import Options from "./Options";
 

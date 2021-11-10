@@ -13,12 +13,12 @@ import { initializeLogger } from "common/logger";
 import Login from "components/Authentication/Login";
 import PrivateRoute from "components/Common/PrivateRoute";
 import PublicRouteForm from "components/PublicRoute/Form";
-import AddQuestion from "components/Question";
 import AddQuiz from "components/Quiz/AddQuiz";
+import AddQuestion from "components/Quiz/Question/AddQuestion";
+import UpdateQuestion from "components/Quiz/Question/UpdateQuestion";
 import QuizList from "components/Quiz/QuizList";
 import ShowQuiz from "components/Quiz/ShowQuiz";
 import UpdateQuiz from "components/Quiz/UpdateQuiz";
-import UpdateQuestion from "components/UpdateQuestion";
 import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 
 const App = () => {
