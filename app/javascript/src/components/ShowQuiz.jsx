@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 import quizApi from "apis/quiz";
+import EmptyState from "components/Common/EmptyState";
 
 import QuestionList from "./ShowQuestionList";
 
@@ -92,11 +93,7 @@ const ShowQuiz = () => {
           />
         </>
       ) : (
-        <div>
-          <Typography style="body1" className="text-center pt-40 ">
-            There are no questions in the quiz
-          </Typography>
-        </div>
+        <EmptyState item="questions" />
       )}
     </div>
   );

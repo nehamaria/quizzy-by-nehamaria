@@ -2,11 +2,11 @@ import React from "react";
 
 import { Typography } from "@bigbinary/neetoui/v2";
 
-const EmptyState = () => {
+const EmptyState = ({ item }) => {
   return (
     <div>
       <Typography style="h3" className="flex justify-center">
-        No new quizzes
+        No new {item}
       </Typography>
     </div>
   );

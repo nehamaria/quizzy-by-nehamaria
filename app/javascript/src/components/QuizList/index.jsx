@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 
 import quizApi from "apis/quiz";
 
-import EmptyState from "./EmptyState";
 import QuizTable from "./QuizTable";
+
+import EmptyState from "../Common/EmptyState";
 
 const QuizList = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -61,7 +62,7 @@ const QuizList = () => {
         {quizzes.length ? (
           <QuizTable quizzes={quizzes} destroyQuiz={destroyQuiz} />
         ) : (
-          <EmptyState />
+          <EmptyState item="quizzes" />
         )}
       </div>
     </div>
