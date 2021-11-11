@@ -13,10 +13,12 @@ const QuestionForm = ({
   setTitle,
   handleSelect,
   answer,
+  quizName,
 }) => {
   return (
     <div className="flex w-full justify-center">
       <div className="flex w-1/2 flex-col justify-start space-y-5">
+        <Typography style="h1">{quizName}</Typography>
         <Input
           type="text"
           name="Title"
@@ -26,26 +28,26 @@ const QuestionForm = ({
           onChange={e => setTitle(e.target.value)}
         />
 
-        {inputList.map((x, i) => {
+        {inputList.map((options, index) => {
           return (
-            <div className="flex space-y-5 space-x-3" key={i}>
+            <div className="flex space-y-5 space-x-3" key={index}>
               <Input
                 name={`option`}
-                value={x.option}
+                value={options.option}
                 size="large"
                 label={
                   <Typography style="body1" weight="semi-bold">{`Option ${
-                    i + 1
+                    index + 1
                   }`}</Typography>
                 }
-                onChange={event => handleInputChange(event, i)}
+                onChange={event => handleInputChange(event, index)}
               />
-              {inputList.length !== 2 && i > 1 && (
+              {inputList.length !== 2 && index > 1 && (
                 <Button
                   style="danger"
                   size="default"
                   label="Remove"
-                  onClick={() => handleRemoveClick(i)}
+                  onClick={() => handleRemoveClick(index)}
                 />
               )}
             </div>

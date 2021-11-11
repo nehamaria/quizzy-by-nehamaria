@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { PageLoader } from "@bigbinary/neetoui/v2";
 import { useHistory, useParams } from "react-router";
 
-import QuestionForm from "./QuestionForm";
+import questionApi from "apis/question";
 
-import questionApi from "../../../apis/question";
+import QuestionForm from "./QuestionForm";
 
 const UpdateQuestion = () => {
   const { quizId, questionId } = useParams();
@@ -13,6 +13,7 @@ const UpdateQuestion = () => {
   const [title, setTitle] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(true);
+  const [quizName, setQuizName] = useState("");
   const history = useHistory();
 
   const handleInputChange = (event, index) => {
@@ -35,7 +36,7 @@ const UpdateQuestion = () => {
 
   const handleSubmit = async () => {
     try {
-      await questionApi.update(questionId, {
+      await questionApi.update(quizId, questionId, {
         question: {
           title: title,
           option1: inputList[0].option,
@@ -43,7 +44,6 @@ const UpdateQuestion = () => {
           option3: inputList[2]?.option || null,
           option4: inputList[3]?.option || null,
           answer: answer.value.value,
-          quiz_id: quizId,
         },
       });
       history.push(`/quizzes/${quizId}/show`);
@@ -58,7 +58,8 @@ const UpdateQuestion = () => {
 
   const showQuestionDetails = async () => {
     try {
-      const response = await questionApi.show(questionId);
+      const response = await questionApi.show(quizId, questionId);
+      setQuizName(response.data.question.quiz);
       setInputList(
         Object.values(response.data.question.option)
           .map(option => {
@@ -98,6 +99,7 @@ const UpdateQuestion = () => {
   return (
     <div>
       <QuestionForm
+        quizName={quizName}
         title={title}
         setTitle={setTitle}
         inputList={inputList}

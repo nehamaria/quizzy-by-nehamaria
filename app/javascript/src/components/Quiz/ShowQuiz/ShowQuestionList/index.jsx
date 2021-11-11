@@ -16,7 +16,7 @@ const QuestionList = ({ quizId, questionList, showQuizDetails }) => {
   const deleteQuestion = async () => {
     try {
       setShowDeleteModal(true);
-      await questionApi.destroy(id);
+      await questionApi.destroy(quizId, id);
       showQuizDetails();
     } catch (error) {
       logger.error(error);
@@ -24,6 +24,7 @@ const QuestionList = ({ quizId, questionList, showQuizDetails }) => {
       setShowDeleteModal(false);
     }
   };
+
   return (
     <div className="flex flex-col space-y-5 px-6 ">
       {questionList.map((question, index) => {
@@ -34,7 +35,9 @@ const QuestionList = ({ quizId, questionList, showQuizDetails }) => {
                 Question {index + 1}
               </Typography>
               <Typography style="h5">{question.title}</Typography>
-              <Link to={`/quiz/${quizId}/question/${question.question_id}`}>
+              <Link
+                to={`/quiz/${quizId}/question/${question.question_id}/update`}
+              >
                 <Button
                   style="secondary"
                   className="neeto-ui-text-error"

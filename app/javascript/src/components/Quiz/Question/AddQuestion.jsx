@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { Typography } from "@bigbinary/neetoui/v2";
 import { useHistory, useLocation } from "react-router";
 
 import questionApi from "apis/question";
@@ -35,7 +34,7 @@ const AddQuestion = () => {
 
   const handleSubmit = async () => {
     try {
-      await questionApi.create({
+      await questionApi.create(id, {
         question: {
           title: title,
           option1: inputList[0].option,
@@ -43,7 +42,6 @@ const AddQuestion = () => {
           option3: inputList[2]?.option || null,
           option4: inputList[3]?.option || null,
           answer: answer.value.value,
-          quiz_id: id,
         },
       });
       history.push(`/quizzes/${id}/show`);
@@ -57,10 +55,8 @@ const AddQuestion = () => {
   };
   return (
     <div>
-      <Typography style="h1" className="mt-10 pl-40">
-        {quizName}
-      </Typography>
       <QuestionForm
+        quizName={quizName}
         title={title}
         setTitle={setTitle}
         inputList={inputList}

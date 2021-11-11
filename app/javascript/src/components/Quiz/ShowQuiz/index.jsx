@@ -51,7 +51,7 @@ const ShowQuiz = () => {
         <div className="flex justify-end space-x-4 pr-4">
           <Link
             to={{
-              pathname: "/create/questions",
+              pathname: `/quizzes/${id}/questions/create`,
               state: { id: id, quizName: quizDetails.title },
             }}
           >

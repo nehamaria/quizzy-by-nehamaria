@@ -3,6 +3,7 @@
 json.question do
     json.id @question.id
     json.title @question.title
+    json.quiz @question.quiz.title
     json.option do
       json.option_1 @question.option1
       json.option_2 @question.option2

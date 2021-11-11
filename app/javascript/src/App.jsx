@@ -12,7 +12,7 @@ import { resetAuthTokens } from "apis/axios";
 import { initializeLogger } from "common/logger";
 import Login from "components/Authentication/Login";
 import PrivateRoute from "components/Common/PrivateRoute";
-import PublicRouteForm from "components/PublicRoute/Form";
+import UserDetails from "components/PublicQuiz/UserDetails";
 import AddQuiz from "components/Quiz/AddQuiz";
 import AddQuestion from "components/Quiz/Question/AddQuestion";
 import UpdateQuestion from "components/Quiz/Question/UpdateQuestion";
@@ -83,13 +83,17 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/quiz/create" component={AddQuiz} />
         <Route exact path="/quizzes/:id/show" component={ShowQuiz} />
-        <Route exact path="/create/questions" component={AddQuestion} />
         <Route
           exact
-          path="/quiz/:quizId/question/:questionId"
+          path="/quizzes/:id/questions/create"
+          component={AddQuestion}
+        />
+        <Route
+          exact
+          path="/quiz/:quizId/question/:questionId/update"
           component={UpdateQuestion}
         />
-        <Route exact path="/public/:slug" component={PublicRouteForm} />
+        <Route exact path="/public/:slug" component={UserDetails} />
         <PrivateRoute
           component={UpdateQuiz}
           condition={isLoggedIn}

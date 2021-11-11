@@ -4,7 +4,9 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user_using_x_auth_token
   before_action :load_question, only: %i[destroy show update]
   def create
-    question = Question.new(question_params.merge(user_id: @current_user.id))
+    quiz = Quiz.find_by_id!(params[:quiz_id])
+    question = quiz.questions.new(question_params.merge(user_id: @current_user.id))
+
     if question.save
       render status: :ok,
         json: { notice: t("successfully_created", entity: "Question") }
@@ -47,6 +49,6 @@ class QuestionsController < ApplicationController
    end
 
     def question_params
-      params.require(:question).permit(:quiz_id, :title, :option1, :option2, :option3, :option4, :answer)
+      params.require(:question).permit(:title, :option1, :option2, :option3, :option4, :answer)
     end
 end
