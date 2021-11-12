@@ -13,10 +13,10 @@ import { initializeLogger } from "common/logger";
 import Login from "components/Authentication/Login";
 import PrivateRoute from "components/Common/PrivateRoute";
 import AddQuiz from "components/Quiz/AddQuiz";
+import FetchQuiz from "components/Quiz/FetchQuiz";
 import AddQuestion from "components/Quiz/Question/AddQuestion";
 import UpdateQuestion from "components/Quiz/Question/UpdateQuestion";
 import QuizList from "components/Quiz/QuizList";
-import ShowQuiz from "components/Quiz/ShowQuiz";
 import UpdateQuiz from "components/Quiz/UpdateQuiz";
 import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 
@@ -81,7 +81,7 @@ const App = () => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/quiz/create" component={AddQuiz} />
-        <Route exact path="/quizzes/:id/show" component={ShowQuiz} />
+        <Route exact path="/quizzes/:id/show" component={FetchQuiz} />
         <Route
           exact
           path="/quizzes/:id/questions/create"

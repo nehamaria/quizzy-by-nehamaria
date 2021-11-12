@@ -10,11 +10,11 @@ import EmptyState from "components/Common/EmptyState";
 
 import QuestionList from "./ShowQuestionList";
 
-const ShowQuiz = () => {
+const FetchQuiz = () => {
   const [quizDetails, setQuizDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const showQuizDetails = async () => {
+  const fetchQuizDetails = async () => {
     try {
       const response = await quizApi.show(id);
       setQuizDetails(response.data.quiz);
@@ -35,7 +35,7 @@ const ShowQuiz = () => {
   };
 
   useEffect(() => {
-    showQuizDetails();
+    fetchQuizDetails();
   }, []);
 
   if (loading) {
@@ -89,7 +89,7 @@ const ShowQuiz = () => {
           <QuestionList
             quizId={quizDetails.id}
             questionList={quizDetails.questions}
-            showQuizDetails={showQuizDetails}
+            fetchQuizDetails={fetchQuizDetails}
           />
         </>
       ) : (
@@ -98,4 +98,4 @@ const ShowQuiz = () => {
     </div>
   );
 };
-export default ShowQuiz;
+export default FetchQuiz;

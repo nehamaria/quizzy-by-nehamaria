@@ -9,7 +9,7 @@ import DeleteModal from "components/Common/DeleteModal";
 
 import Options from "./Options";
 
-const QuestionList = ({ quizId, questionList, showQuizDetails }) => {
+const QuestionList = ({ quizId, questionList, fetchQuizDetails }) => {
   const [id, setId] = useState("");
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -17,7 +17,7 @@ const QuestionList = ({ quizId, questionList, showQuizDetails }) => {
     try {
       setShowDeleteModal(true);
       await questionApi.destroy(quizId, id);
-      showQuizDetails();
+      fetchQuizDetails();
     } catch (error) {
       logger.error(error);
     } finally {
