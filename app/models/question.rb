@@ -2,18 +2,8 @@
 
 class Question < ApplicationRecord
   validates :title, presence: true
-  validates :option1, presence: true
-  validates :option2, presence: true
-  validates :answer, presence: true
-  validate :answer_inclusion
   belongs_to :quiz
   belongs_to :user
-
-  private
-
-    def answer_inclusion
-      unless [ option1, option2, option3, option4 ].include? answer
-        errors.add(:base, "Answer does not exist in options")
-      end
-    end
+  has_many :options, dependent: :destroy
+  accepts_nested_attributes_for :options, allow_destroy: true
 end

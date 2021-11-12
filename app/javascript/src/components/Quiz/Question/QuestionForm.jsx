@@ -81,8 +81,8 @@ const QuestionForm = ({
             };
             handleSelect(event);
           }}
-          options={inputList.map((option, index) => {
-            return { value: option.option, label: `Option ${index + 1}` };
+          options={inputList.map((_, index) => {
+            return { value: index, label: `Option ${index + 1}` };
           })}
         />
         <Button

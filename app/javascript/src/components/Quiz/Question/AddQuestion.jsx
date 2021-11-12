@@ -31,17 +31,18 @@ const AddQuestion = () => {
   const handleAddClick = () => {
     setInputList([...inputList, [{ option: "" }, { option: "" }]]);
   };
-
   const handleSubmit = async () => {
     try {
       await questionApi.create(id, {
         question: {
           title: title,
-          option1: inputList[0].option,
-          option2: inputList[1].option,
-          option3: inputList[2]?.option || null,
-          option4: inputList[3]?.option || null,
-          answer: answer.value.value,
+          options_attributes: inputList.map(option => {
+            return {
+              name: option.option || "",
+              correct_answer:
+                option.option === inputList[answer.value.value].option,
+            };
+          }),
         },
       });
       history.push(`/quizzes/${id}/show`);

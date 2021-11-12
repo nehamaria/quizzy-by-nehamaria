@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { PageLoader } from "@bigbinary/neetoui/v2";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 
 import questionApi from "apis/question";
 
@@ -14,7 +14,7 @@ const UpdateQuestion = () => {
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(true);
   const [quizName, setQuizName] = useState("");
-  const history = useHistory();
+  const [options, setOptions] = useState([]);
 
   const handleInputChange = (event, index) => {
     const { name, value } = event.target;
@@ -36,17 +36,39 @@ const UpdateQuestion = () => {
 
   const handleSubmit = async () => {
     try {
-      await questionApi.update(quizId, questionId, {
+      const payload = {
         question: {
           title: title,
-          option1: inputList[0].option,
-          option2: inputList[1].option,
-          option3: inputList[2]?.option || null,
-          option4: inputList[3]?.option || null,
-          answer: answer.value.value,
+          options_attributes: inputList.map(option => {
+            return {
+              id: option?.id,
+              name: option.option,
+              correct_answer:
+                option.option === inputList[answer.value.value].option,
+            };
+          }),
         },
-      });
-      history.push(`/quizzes/${quizId}/show`);
+      };
+      payload.question.options_attributes = [
+        ...payload.question.options_attributes,
+        ...options
+          .filter(
+            ({ id }) => inputList.findIndex(option => option.id === id) === -1
+          )
+          .map(({ name, correct_answer, id }) => {
+            return {
+              id,
+              name,
+              correct_answer,
+              _destroy: true,
+            };
+          }),
+      ];
+      await questionApi.update(quizId, questionId, payload);
+      setTimeout(
+        () => (window.location.href = `/quizzes/${quizId}/show`),
+        1000
+      );
     } catch (error) {
       logger.error(error);
     }
@@ -60,27 +82,31 @@ const UpdateQuestion = () => {
     try {
       const response = await questionApi.show(quizId, questionId);
       setQuizName(response.data.question.quiz);
+      setTitle(response.data.question.title);
       setInputList(
-        Object.values(response.data.question.option)
+        response.data.question.option
           .map(option => {
             return {
-              option: option,
+              option: option.name,
+              id: option.id,
             };
           })
           .filter(({ option }) => option)
       );
       setAnswer({
         value: {
-          value: response.data.question.correct_answer,
+          value: response.data.question.option.findIndex(
+            option => option.correct_answer
+          ),
 
           label: `Option ${
-            Object.values(response.data.question.option).indexOf(
-              response.data.question.correct_answer
+            response.data.question.option.findIndex(
+              ({ correct_answer }) => correct_answer
             ) + 1
           }`,
         },
       });
-      setTitle(response.data.question.title);
+      setOptions(response.data.question.option);
     } catch (error) {
       logger.error(error);
     } finally {

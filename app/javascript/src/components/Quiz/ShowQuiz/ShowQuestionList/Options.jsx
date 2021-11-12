@@ -3,7 +3,7 @@ import React from "react";
 import { CheckCircle } from "@bigbinary/neeto-icons";
 import { Typography } from "@bigbinary/neetoui/v2";
 
-const Options = ({ optionList, correctAnswer }) => {
+const Options = ({ optionList }) => {
   const options = Object.values(optionList).filter(opt => opt);
 
   return (
@@ -14,8 +14,8 @@ const Options = ({ optionList, correctAnswer }) => {
             <Typography style="body2" className="ml-10 flex-shrink-0">
               Option {index + 1}
             </Typography>
-            <Typography style="body2">{opt}</Typography>
-            {opt === correctAnswer && (
+            <Typography style="body2">{opt.name}</Typography>
+            {opt.correct_answer && (
               <div className="flex flex-shrink-0">
                 <CheckCircle color="#00ba88" />
                 <Typography style="body2" className="neeto-ui-text-success">

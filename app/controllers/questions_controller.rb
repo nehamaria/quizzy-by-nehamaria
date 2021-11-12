@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
         json: { notice: t("successfully_created", entity: "Question") }
     else
       errors = question.errors.full_messages.to_sentence
-      render status: :unprocessable_entity, json: { error: error }
+      render status: :unprocessable_entity, json: { error: errors }
     end
   end
 
@@ -49,6 +49,6 @@ class QuestionsController < ApplicationController
    end
 
     def question_params
-      params.require(:question).permit(:title, :option1, :option2, :option3, :option4, :answer)
+      params.require(:question).permit(:title, options_attributes: [:id, :correct_answer, :name, :_destroy])
     end
 end
