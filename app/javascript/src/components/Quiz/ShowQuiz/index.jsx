@@ -11,7 +11,7 @@ import EmptyState from "components/Common/EmptyState";
 import QuestionList from "./ShowQuestionList";
 
 const ShowQuiz = () => {
-  const [quizDetails, setQuizDetails] = useState([]);
+  const [quizDetails, setQuizDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const showQuizDetails = async () => {
