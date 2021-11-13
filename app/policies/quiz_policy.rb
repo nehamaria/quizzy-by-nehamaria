@@ -8,6 +8,10 @@ class QuizPolicy
     @quiz = quiz
   end
 
+  # def create
+  #   user.role == "administrator"
+  # end
+
   def show?
     quiz.user_id == user.id
   end

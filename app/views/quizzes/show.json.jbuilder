@@ -8,6 +8,6 @@ json.quiz do
   json.questions @questions do |question|
     json.title question.title
     json.question_id question.id
-    json.option question.options
+    json.options question.options
   end
 end
