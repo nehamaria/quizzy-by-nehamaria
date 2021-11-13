@@ -12,7 +12,7 @@ const AddQuestion = () => {
     { option: "" },
   ]);
   const [title, setTitle] = useState("");
-  const [answer, setAnswer] = useState({ value: "" });
+  const [answer, setAnswer] = useState("");
   const history = useHistory();
 
   const { id, quizName } = useLocation().state;
@@ -42,8 +42,7 @@ const AddQuestion = () => {
           options_attributes: optionList.map(option => {
             return {
               name: option.option || "",
-              correct_answer:
-                option.option === optionList[answer.value.value].option,
+              correct_answer: option.option === optionList[answer.value].option,
             };
           }),
         },
@@ -55,7 +54,7 @@ const AddQuestion = () => {
   };
 
   const handleSelectAnswer = event => {
-    setAnswer({ ...answer, value: event.target.value });
+    setAnswer(event.target.value);
   };
   return (
     <div>

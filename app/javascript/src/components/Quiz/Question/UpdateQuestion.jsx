@@ -43,8 +43,7 @@ const UpdateQuestion = () => {
             return {
               id: option?.id,
               name: option.option,
-              correct_answer:
-                option.option === optionList[answer.value.value].option,
+              correct_answer: option.option === optionList[answer.value].option,
             };
           }),
         },
@@ -75,7 +74,7 @@ const UpdateQuestion = () => {
   };
 
   const handleSelectAnswer = event => {
-    setAnswer({ ...answer, value: event.target.value });
+    setAnswer(event.target.value);
   };
 
   const fetchQuestionDetails = async () => {
@@ -94,17 +93,15 @@ const UpdateQuestion = () => {
           .filter(({ option }) => option)
       );
       setAnswer({
-        value: {
-          value: response.data.question.option.findIndex(
-            option => option.correct_answer
-          ),
+        value: response.data.question.option.findIndex(
+          option => option.correct_answer
+        ),
 
-          label: `Option ${
-            response.data.question.option.findIndex(
-              ({ correct_answer }) => correct_answer
-            ) + 1
-          }`,
-        },
+        label: `Option ${
+          response.data.question.option.findIndex(
+            ({ correct_answer }) => correct_answer
+          ) + 1
+        }`,
       });
       setOptions(response.data.question.option);
     } catch (error) {
