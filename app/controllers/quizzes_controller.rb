@@ -32,11 +32,21 @@ class QuizzesController < ApplicationController
 
   def update
     authorize @quiz
-    if @quiz.update(quiz_params)
-      render status: :ok, json: { notice: t("successfully_updated", entity: "Quiz") }
+    if quiz_params[:publish] == true
+      @quiz.generate_slug
+      if @quiz.save
+        render status: :ok, json: { notice: "Quiz published" }
+      else
+        render status: :unprocessable_entity,
+          json: { error: @quiz.errors.full_messages.to_sentence }
+      end
     else
-      render status: :unprocessable_entity,
-        json: { error: @quiz.errors.full_messages.to_sentence }
+      if @quiz.update(quiz_params)
+        render status: :ok, json: { notice: t("successfully_updated", entity: "Quiz") }
+      else
+        render status: :unprocessable_entity,
+          json: { error: @quiz.errors.full_messages.to_sentence }
+      end
     end
   end
 

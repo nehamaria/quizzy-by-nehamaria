@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 class Public::QuizzesController<ApplicationController
  before_action: load_quiz
+
  def show
   load_quiz
+  @verified_quiz=slug.present?
  end
  private
  def load_quiz

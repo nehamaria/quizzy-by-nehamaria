@@ -27,7 +27,7 @@ const FetchQuiz = () => {
 
   const handlePublish = async () => {
     try {
-      await quizApi.update(id, { quiz: { publish: "published" } });
+      await quizApi.update(id, { quiz: { publish: true } });
       setTimeout(() => window.location.reload(), 1000);
     } catch (error) {
       logger.error(error);
@@ -64,19 +64,18 @@ const FetchQuiz = () => {
               className="mb-3"
             />
           </Link>
-          {quizDetails.questions.length > 0 &&
-            quizDetails.publish === "not_publish" && (
-              <Button
-                className="mb-3"
-                label={<Typography className="p-1">Publish</Typography>}
-                onClick={handlePublish}
-              />
-            )}
+          {quizDetails.questions.length > 0 && quizDetails.slug === null && (
+            <Button
+              className="mb-3"
+              label={<Typography className="p-1">Publish</Typography>}
+              onClick={handlePublish}
+            />
+          )}
         </div>
       </div>
       {quizDetails.questions.length ? (
         <>
-          {quizDetails.publish === "published" && (
+          {quizDetails.slug !== null && (
             <div>
               <Typography className="inline-flex ml-5 gap-x-1 mb-5" style="h4">
                 <CheckCircle size={18} />

@@ -8,8 +8,8 @@ class QuizTest < ActiveSupport::TestCase
       email: "sam@example.com", first_name: "sam", last_name: "roy", password: "1234qwe",
       password_confirmation: "1234qwe"
     )
-    @quiz = Quiz.new(
-      title: "This is the first title", user_id: 1)
+    @quiz = @user.quizzes.new(
+      title: "This is the first title")
   end
 
   def test_title_should_be_of_valid_length
@@ -30,7 +30,9 @@ class QuizTest < ActiveSupport::TestCase
 
   def test_quiz_user_should_not_be_valid_without_user_id
     @quiz.user_id = nil
-    assert_not @quiz.valid?
-    assert_equal @quiz.errors.full_messages, ["User must exist"]
+
+    assert_raises ActiveRecord::NotNullViolation do
+      @quiz.save
+    end
   end
 end

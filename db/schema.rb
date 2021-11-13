@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2021_11_11_144933) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "publish", default: 0
     t.string "slug"
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
