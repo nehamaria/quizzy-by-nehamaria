@@ -74,11 +74,11 @@ const UpdateQuestion = () => {
     }
   };
 
-  const handleSelect = event => {
+  const handleSelectAnswer = event => {
     setAnswer({ ...answer, value: event.target.value });
   };
 
-  const showQuestionDetails = async () => {
+  const fetchQuestionDetails = async () => {
     try {
       const response = await questionApi.show(quizId, questionId);
       setQuizName(response.data.question.quiz);
@@ -115,7 +115,7 @@ const UpdateQuestion = () => {
   };
 
   useEffect(() => {
-    showQuestionDetails();
+    fetchQuestionDetails();
   }, []);
 
   if (loading) {
@@ -133,7 +133,7 @@ const UpdateQuestion = () => {
         handleRemoveClick={handleRemoveClick}
         handleAddClick={handleAddClick}
         handleSubmit={handleSubmit}
-        handleSelect={handleSelect}
+        handleSelectAnswer={handleSelectAnswer}
         answer={answer}
       />
     </div>

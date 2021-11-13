@@ -6,7 +6,7 @@ const DeleteModal = ({
   id,
   showDeleteModal,
   setShowDeleteModal,
-  destroyQuiz,
+  destroyItem,
   item,
 }) => {
   return (
@@ -23,7 +23,7 @@ const DeleteModal = ({
         <Modal.Footer className="space-x-2">
           <Button
             label="Continue"
-            onClick={() => destroyQuiz(id)}
+            onClick={() => destroyItem(id)}
             size="large"
           />
           <Button

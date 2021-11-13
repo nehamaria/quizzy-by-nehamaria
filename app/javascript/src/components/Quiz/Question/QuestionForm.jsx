@@ -11,7 +11,7 @@ const QuestionForm = ({
   handleSubmit,
   title,
   setTitle,
-  handleSelect,
+  handleSelectAnswer,
   answer,
   quizName,
 }) => {
@@ -79,7 +79,7 @@ const QuestionForm = ({
             let event = {
               target: { value: selectedOption },
             };
-            handleSelect(event);
+            handleSelectAnswer(event);
           }}
           options={inputList.map((_, index) => {
             return { value: index, label: `Option ${index + 1}` };

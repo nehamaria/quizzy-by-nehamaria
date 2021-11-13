@@ -51,7 +51,7 @@ const AddQuestion = () => {
     }
   };
 
-  const handleSelect = event => {
+  const handleSelectAnswer = event => {
     setAnswer({ ...answer, value: event.target.value });
   };
   return (
@@ -65,7 +65,7 @@ const AddQuestion = () => {
         handleRemoveClick={handleRemoveClick}
         handleAddClick={handleAddClick}
         handleSubmit={handleSubmit}
-        handleSelect={handleSelect}
+        handleSelectAnswer={handleSelectAnswer}
         answer={answer}
       />
     </div>

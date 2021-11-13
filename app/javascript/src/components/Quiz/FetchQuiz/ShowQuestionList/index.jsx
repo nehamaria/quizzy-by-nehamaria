@@ -74,7 +74,7 @@ const QuestionList = ({ quizId, questionList, fetchQuizDetails }) => {
           id={id}
           showDeleteModal={showDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
-          destroyQuiz={deleteQuestion}
+          destroyItem={deleteQuestion}
           item="question"
         />
       )}
