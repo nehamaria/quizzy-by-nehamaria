@@ -4,7 +4,7 @@ import { Plus } from "@bigbinary/neeto-icons";
 import { Button, Input, Select, Typography } from "@bigbinary/neetoui/v2";
 
 const QuestionForm = ({
-  inputList,
+  optionList,
   handleInputChange,
   handleRemoveClick,
   handleAddClick,
@@ -28,7 +28,7 @@ const QuestionForm = ({
           onChange={e => setTitle(e.target.value)}
         />
 
-        {inputList.map((options, index) => {
+        {optionList.map((options, index) => {
           return (
             <div className="flex space-y-5 space-x-3" key={index}>
               <Input
@@ -42,7 +42,7 @@ const QuestionForm = ({
                 }
                 onChange={event => handleInputChange(event, index)}
               />
-              {inputList.length !== 2 && index > 1 && (
+              {optionList.length !== 2 && index > 1 && (
                 <Button
                   style="danger"
                   size="default"
@@ -53,7 +53,7 @@ const QuestionForm = ({
             </div>
           );
         })}
-        {inputList.length < 4 && (
+        {optionList.length < 4 && (
           <Button
             style="secondary"
             className="self-start"
@@ -81,7 +81,7 @@ const QuestionForm = ({
             };
             handleSelectAnswer(event);
           }}
-          options={inputList.map((_, index) => {
+          options={optionList.map((_, index) => {
             return { value: index, label: `Option ${index + 1}` };
           })}
         />

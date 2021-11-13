@@ -2,10 +2,9 @@
 
 class QuestionsController < ApplicationController
   before_action :authenticate_user_using_x_auth_token
-  before_action :load_question, only: %i[destroy show update]
+  before_action :load_quiz
   def create
-    quiz = Quiz.find_by_id!(params[:quiz_id])
-    question = quiz.questions.new(question_params.merge(user_id: @current_user.id))
+    question = @quiz.questions.new(question_params.merge(user_id: @current_user.id))
 
     if question.save
       render status: :ok,
@@ -17,6 +16,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    load_question
     if @question.destroy
       render status: :ok,
         json: { notice: "Successfully deleted questions" }
@@ -26,10 +26,12 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    load_question
     authorize @question
   end
 
   def update
+    load_question
     authorize @question
     if @question.update(question_params)
       render status: :ok, json: { notice: t("successfully_updated", entity: "Question") }
@@ -41,8 +43,15 @@ class QuestionsController < ApplicationController
 
   private
 
+    def load_quiz
+      @quiz = Quiz.find_by(id: params[:quiz_id])
+      unless @quiz
+        render status: :not_found, json: { error: "Question not found" }
+      end
+    end
+
     def load_question
-      @question = Question.find_by(id: params[:id])
+      @question = @quiz.questions.find_by(id: params[:id])
       unless @question
         render status: :not_found, json: { error: "Question not found" }
       end

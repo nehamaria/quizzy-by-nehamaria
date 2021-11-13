@@ -9,7 +9,7 @@ import QuestionForm from "./QuestionForm";
 
 const UpdateQuestion = () => {
   const { quizId, questionId } = useParams();
-  const [inputList, setInputList] = useState("");
+  const [optionList, setOptionList] = useState("");
   const [title, setTitle] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(true);
@@ -18,20 +18,20 @@ const UpdateQuestion = () => {
 
   const handleInputChange = (event, index) => {
     const { name, value } = event.target;
-    const list = [...inputList];
+    const list = [...optionList];
 
     list[index][name] = value;
-    setInputList(list);
+    setOptionList(list);
   };
 
   const handleRemoveClick = index => {
-    const list = [...inputList];
+    const list = [...optionList];
     list.splice(index, 1);
-    setInputList(list);
+    setOptionList(list);
   };
 
   const handleAddClick = () => {
-    setInputList([...inputList, [{ option: "" }, { option: "" }]]);
+    setOptionList([...optionList, [{ option: "" }, { option: "" }]]);
   };
 
   const handleSubmit = async () => {
@@ -39,12 +39,12 @@ const UpdateQuestion = () => {
       const payload = {
         question: {
           title: title,
-          options_attributes: inputList.map(option => {
+          options_attributes: optionList.map(option => {
             return {
               id: option?.id,
               name: option.option,
               correct_answer:
-                option.option === inputList[answer.value.value].option,
+                option.option === optionList[answer.value.value].option,
             };
           }),
         },
@@ -53,7 +53,7 @@ const UpdateQuestion = () => {
         ...payload.question.options_attributes,
         ...options
           .filter(
-            ({ id }) => inputList.findIndex(option => option.id === id) === -1
+            ({ id }) => optionList.findIndex(option => option.id === id) === -1
           )
           .map(({ name, correct_answer, id }) => {
             return {
@@ -83,7 +83,7 @@ const UpdateQuestion = () => {
       const response = await questionApi.show(quizId, questionId);
       setQuizName(response.data.question.quiz);
       setTitle(response.data.question.title);
-      setInputList(
+      setOptionList(
         response.data.question.option
           .map(option => {
             return {
@@ -128,7 +128,7 @@ const UpdateQuestion = () => {
         quizName={quizName}
         title={title}
         setTitle={setTitle}
-        inputList={inputList}
+        optionList={optionList}
         handleInputChange={handleInputChange}
         handleRemoveClick={handleRemoveClick}
         handleAddClick={handleAddClick}

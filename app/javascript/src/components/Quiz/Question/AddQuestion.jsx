@@ -7,7 +7,10 @@ import questionApi from "apis/question";
 import QuestionForm from "./QuestionForm";
 
 const AddQuestion = () => {
-  const [inputList, setInputList] = useState([{ option: "" }, { option: "" }]);
+  const [optionList, setOptionList] = useState([
+    { option: "" },
+    { option: "" },
+  ]);
   const [title, setTitle] = useState("");
   const [answer, setAnswer] = useState({ value: "" });
   const history = useHistory();
@@ -16,31 +19,31 @@ const AddQuestion = () => {
 
   const handleInputChange = (event, index) => {
     const { name, value } = event.target;
-    const list = [...inputList];
+    const list = [...optionList];
 
     list[index][name] = value;
-    setInputList(list);
+    setOptionList(list);
   };
 
   const handleRemoveClick = index => {
-    const list = [...inputList];
+    const list = [...optionList];
     list.splice(index, 1);
-    setInputList(list);
+    setOptionList(list);
   };
 
   const handleAddClick = () => {
-    setInputList([...inputList, [{ option: "" }, { option: "" }]]);
+    setOptionList([...optionList, [{ option: "" }, { option: "" }]]);
   };
   const handleSubmit = async () => {
     try {
       await questionApi.create(id, {
         question: {
           title: title,
-          options_attributes: inputList.map(option => {
+          options_attributes: optionList.map(option => {
             return {
               name: option.option || "",
               correct_answer:
-                option.option === inputList[answer.value.value].option,
+                option.option === optionList[answer.value.value].option,
             };
           }),
         },
@@ -60,7 +63,7 @@ const AddQuestion = () => {
         quizName={quizName}
         title={title}
         setTitle={setTitle}
-        inputList={inputList}
+        optionList={optionList}
         handleInputChange={handleInputChange}
         handleRemoveClick={handleRemoveClick}
         handleAddClick={handleAddClick}
