@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_11_11_144933) do
     t.integer "quiz_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
@@ -80,6 +79,5 @@ ActiveRecord::Schema.define(version: 2021_11_11_144933) do
   add_foreign_key "attempts", "users"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "quizzes"
-  add_foreign_key "questions", "users"
   add_foreign_key "quizzes", "users"
 end

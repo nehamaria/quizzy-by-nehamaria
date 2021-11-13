@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user_using_x_auth_token
   before_action :load_quiz
   def create
-    question = @quiz.questions.new(question_params.merge(user_id: @current_user.id))
+    question = @quiz.questions.new(question_params)
 
     if question.save
       render status: :ok,
@@ -27,12 +27,10 @@ class QuestionsController < ApplicationController
 
   def show
     load_question
-    authorize @question
   end
 
   def update
     load_question
-    authorize @question
     if @question.update(question_params)
       render status: :ok, json: { notice: t("successfully_updated", entity: "Question") }
     else
@@ -51,6 +49,7 @@ class QuestionsController < ApplicationController
     end
 
     def load_question
+      authorize @quiz
       @question = @quiz.questions.find_by(id: params[:id])
       unless @question
         render status: :not_found, json: { error: "Question not found" }

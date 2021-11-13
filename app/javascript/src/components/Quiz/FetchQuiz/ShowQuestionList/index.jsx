@@ -63,7 +63,7 @@ const QuestionList = ({ quizId, questionList, fetchQuizDetails }) => {
               />
             </div>
             <Options
-              optionList={question.option}
+              optionList={question.options}
               correctAnswer={question.correct_answer}
             />
           </div>

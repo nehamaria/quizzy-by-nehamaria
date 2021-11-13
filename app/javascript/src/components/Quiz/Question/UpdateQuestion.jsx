@@ -83,7 +83,7 @@ const UpdateQuestion = () => {
       setQuizName(response.data.question.quiz);
       setTitle(response.data.question.title);
       setOptionList(
-        response.data.question.option
+        response.data.question.options
           .map(option => {
             return {
               option: option.name,
@@ -93,17 +93,17 @@ const UpdateQuestion = () => {
           .filter(({ option }) => option)
       );
       setAnswer({
-        value: response.data.question.option.findIndex(
+        value: response.data.question.options.findIndex(
           option => option.correct_answer
         ),
 
         label: `Option ${
-          response.data.question.option.findIndex(
+          response.data.question.options.findIndex(
             ({ correct_answer }) => correct_answer
           ) + 1
         }`,
       });
-      setOptions(response.data.question.option);
+      setOptions(response.data.question.options);
     } catch (error) {
       logger.error(error);
     } finally {
