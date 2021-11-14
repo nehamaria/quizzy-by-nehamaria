@@ -20,6 +20,9 @@ import QuizList from "components/Quiz/QuizList";
 import UpdateQuiz from "components/Quiz/UpdateQuiz";
 import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 
+import UserDetails from "./components/PublicQuiz/UserDetails";
+import VerifyQuiz from "./components/PublicQuiz/VerifyQuiz";
+
 const App = () => {
   const [loading, setLoading] = useState(true);
   const authToken = getFromLocalStorage("authToken");
@@ -92,6 +95,8 @@ const App = () => {
           path="/quiz/:quizId/question/:questionId/update"
           component={UpdateQuestion}
         />
+        <Route exact path="/public/:slug" component={VerifyQuiz} />
+        <Route exact path="/public/:slug/attempt/new" component={UserDetails} />
         <PrivateRoute
           component={UpdateQuiz}
           condition={isLoggedIn}
