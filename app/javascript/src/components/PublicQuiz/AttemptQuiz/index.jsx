@@ -38,13 +38,13 @@ const AttemptQuiz = ({ attempt_id, showResult, setShowResult }) => {
           attempt_id: attempt_id,
         },
       };
+
       await attemptApi.submitAnswers(payload);
       setShowResult(true);
     } catch (error) {
       logger.error(error);
     }
   };
-
   useEffect(() => fetchQuizDetails(), []);
   if (showResult) {
     return <ShowResult attempt_id={attempt_id} />;

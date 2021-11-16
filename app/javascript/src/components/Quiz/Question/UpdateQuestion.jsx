@@ -54,11 +54,11 @@ const UpdateQuestion = () => {
           .filter(
             ({ id }) => optionList.findIndex(option => option.id === id) === -1
           )
-          .map(({ name, correct_answer, id }) => {
+          .map(({ name, id }) => {
             return {
               id,
               name,
-              correct_answer,
+              correct_answer: false,
               _destroy: true,
             };
           }),
