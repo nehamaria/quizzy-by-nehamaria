@@ -12,17 +12,20 @@ const Login = () => {
       const response = await authApi.login({
         login: { email: values.email, password: values.password },
       });
-      setToLocalStorage({
-        authToken: response.data.authentication_token,
-        email: values.email,
-        userId: response.data.id,
-        firstName: response.data.first_name,
-        lastName: response.data.last_name,
-      });
-      setAuthHeaders();
-      setTimeout(() => (window.location.href = "/"), 1000);
+      if (response.data.role === "administrator") {
+        setToLocalStorage({
+          authToken: response.data.authentication_token,
+          email: values.email,
+          userId: response.data.id,
+          firstName: response.data.first_name,
+          lastName: response.data.last_name,
+        });
+        setAuthHeaders();
+      }
     } catch (error) {
       logger.error(error);
+    } finally {
+      setTimeout(() => (window.location.href = "/"), 1000);
     }
   };
 
