@@ -75,12 +75,20 @@ const FetchQuiz = () => {
       </div>
       {quizDetails.questions.length ? (
         <>
-          {quizDetails.slug !== null && (
+          {quizDetails.slug && (
             <div>
               <Typography className="inline-flex ml-5 gap-x-1 mb-5" style="h4">
                 <CheckCircle size={18} />
-                Published,your public link is - {window.location.origin}/public/
-                {quizDetails.slug}
+                Published,your public link is -{" "}
+                <a
+                  href={`${window.location.origin}/public/${quizDetails.slug}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="neeto-ui-text-info"
+                >
+                  {window.location.origin}/public/
+                  {quizDetails.slug}
+                </a>
               </Typography>
             </div>
           )}

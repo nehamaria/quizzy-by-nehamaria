@@ -8,10 +8,6 @@ class QuizPolicy
     @quiz = quiz
   end
 
-  # def create
-  #   user.role == "administrator"
-  # end
-
   def show?
     quiz.user_id == user.id
   end
@@ -33,7 +29,7 @@ class QuizPolicy
     end
 
     def resolve
-      scope.where(user_id: user.id)
+      scope.where(user_id: user.id).order("updated_at DESC")
     end
   end
 end

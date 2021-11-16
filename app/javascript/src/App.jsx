@@ -97,6 +97,7 @@ const App = () => {
         />
         <Route exact path="/public/:slug" component={VerifyQuiz} />
         <Route exact path="/public/:slug/attempt/new" component={UserDetails} />
+
         <PrivateRoute
           component={UpdateQuiz}
           condition={isLoggedIn}

@@ -4,6 +4,7 @@ class Question < ApplicationRecord
   validates :title, presence: true
   belongs_to :quiz
   has_many :options, dependent: :destroy
+  has_many :attempted_answers, dependent: :destroy
   accepts_nested_attributes_for :options, allow_destroy: true
   before_validation :validate_options
 
@@ -12,10 +13,12 @@ class Question < ApplicationRecord
     def validate_options
       options = self.options
       unless 2 <= options.length && options.length <= 4
-        errors.add(:question, "should have minimum 2 and atmost 4 options")
+        errors.add(:base, t("question.should_have_minimum"))
+
       end
       unless options.select { |option| option[:correct_answer] == true }.length == 1
-        errors.add(:options, "should have only one correct answer")
+        errors.add(:base, t("option.should_have_only"))
+
       end
-    end
+  end
 end

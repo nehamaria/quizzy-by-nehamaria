@@ -24,7 +24,6 @@ const QuestionList = ({ quizId, questionList, fetchQuizDetails }) => {
       setShowDeleteModal(false);
     }
   };
-
   return (
     <div className="flex flex-col space-y-5 px-6 ">
       {questionList.map((question, index) => {

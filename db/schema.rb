@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_11_11_144933) do
   create_table "attempts", force: :cascade do |t|
     t.integer "quiz_id", null: false
     t.integer "user_id", null: false
-    t.boolean "submit"
+    t.boolean "submit", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["quiz_id"], name: "index_attempts_on_quiz_id"

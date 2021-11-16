@@ -1,25 +1,30 @@
 # frozen_string_literal: true
 
+require "test_helper"
+
 class OptionTest < ActiveSupport::TestCase
   def setup
-    @user = User.create(
-      email: "sam@example.com", first_name: "sam", last_name: "roy", password: "1234qwe",
-      password_confirmation: "1234qwe"
-    )
-    @quiz = @user.quizzes.new(
-      title: "This is the first title")
-    @question = @quiz.questions.new(
-      title: "which planet is closest to sun",
+    @user = create(:user)
+    @quiz = create(:quiz, user: @user)
+    @question = build(:question, quiz: @quiz)
 
-    )
-    @option = @question.options.new(
-      name: "This is the option content",
-      correct_answer: true
-    )
-    @option1 = @question.options.new(
-      name: "This is the 2nd option content",
-      correct_answer: false
-    )
+    # @quiz = @user.quizzes.new(
+    #   title: "This is the first title")
+    # @question = @quiz.questions.new(
+    #   title: "which planet is closest to sun",
+
+    # )
+    @option = build(:option, question: @question)
+    @option1 = build(:option, question: @question)
+
+    # @option = @question.options.new(
+    #   name: "This is the option content",
+    #   correct_answer: true
+    # )
+    # @option1 = @question.options.new(
+    #   name: "This is the 2nd option content",
+    #   correct_answer: false
+    # )
   end
 
   def test_valid_option

@@ -12,7 +12,6 @@ class Public::QuizzesController < ApplicationController
 
     def load_quiz
       @quiz = Quiz.find_by_slug(params[:slug])
-
       unless @quiz
         render status: :not_found, json: { error: t("not_found", entity: "Quiz") }
       end

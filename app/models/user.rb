@@ -17,6 +17,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
   before_save :email_lowercase
   has_many :quizzes
+  has_many :attempts
 
   private
 

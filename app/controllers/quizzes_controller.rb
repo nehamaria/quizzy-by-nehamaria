@@ -63,7 +63,6 @@ class QuizzesController < ApplicationController
 
     def load_quiz
       @quiz = @current_user.quizzes.find_by(id: params[:id])
-      # @quiz = Quiz.find_by(@current_user.quizzes)
 
       unless @quiz
         render status: :not_found, json: { error: t("quiz.not_found") }

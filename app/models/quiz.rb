@@ -8,6 +8,7 @@ class Quiz < ApplicationRecord
   validates :title, presence: true, length: { maximum: MAX_TITLE_LENGTH }
   belongs_to :user
   has_many :questions, dependent: :destroy
+  has_many :attempts, dependent: :destroy
 
   def generate_slug
     title_slug = title.parameterize
