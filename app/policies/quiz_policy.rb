@@ -29,7 +29,7 @@ class QuizPolicy
     end
 
     def resolve
-      scope.where(user_id: user.id)
+      scope.where(user_id: user.id).order("updated_at DESC")
     end
   end
 end

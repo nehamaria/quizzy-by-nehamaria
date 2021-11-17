@@ -4,12 +4,10 @@ require "test_helper"
 
 class QuizTest < ActiveSupport::TestCase
   def setup
-    @user = User.create(
-      email: "sam@example.com", first_name: "sam", last_name: "roy", password: "1234qwe",
-      password_confirmation: "1234qwe"
-    )
-    @quiz = Quiz.new(
-      title: "This is the first title", user_id: 1)
+    @user = create(:user)
+    @quiz = create(:quiz, user_id: @user.id)
+    # @quiz = @user.quizzes.new(
+    #   title: "This is the first title")
   end
 
   def test_title_should_be_of_valid_length
@@ -28,9 +26,10 @@ class QuizTest < ActiveSupport::TestCase
     assert @quiz.valid?
   end
 
-  def test_user_should_not_be_valid_without_user
+  def test_quiz_user_should_not_be_valid_without_user_id
     @quiz.user_id = nil
     assert_not @quiz.valid?
-    assert_equal @quiz.errors.full_messages, ["User must exist"]
+
+    assert = @quiz.errors.full_messages, "User must exist"
   end
 end

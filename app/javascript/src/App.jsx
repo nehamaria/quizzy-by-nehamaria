@@ -6,21 +6,22 @@ import { either, isEmpty, isNil } from "ramda";
 import { Route, Switch, BrowserRouter as Router, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import authApi from "apis/auth";
 import { registerIntercepts, setAuthHeaders } from "apis/axios";
+import { resetAuthTokens } from "apis/axios";
+import { initializeLogger } from "common/logger";
+import Login from "components/Authentication/Login";
+import PrivateRoute from "components/Common/PrivateRoute";
+import AddQuiz from "components/Quiz/AddQuiz";
+import FetchQuiz from "components/Quiz/FetchQuiz";
+import AddQuestion from "components/Quiz/Question/AddQuestion";
+import UpdateQuestion from "components/Quiz/Question/UpdateQuestion";
+import QuizList from "components/Quiz/QuizList";
+import UpdateQuiz from "components/Quiz/UpdateQuiz";
+import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 
-import authApi from "./apis/auth";
-import { resetAuthTokens } from "./apis/axios";
-import { initializeLogger } from "./common/logger";
-import AddQuiz from "./components/AddQuiz";
-import PrivateRoute from "./components/Common/PrivateRoute";
-import Login from "./components/LoginPage";
-import PublicRoute from "./components/PublicRoute";
-import AddQuestion from "./components/Question";
-import QuizList from "./components/QuizList";
-import ShowQuiz from "./components/ShowQuiz";
-import UpdateQuestion from "./components/UpdateQuestion";
-import UpdateQuiz from "./components/UpdateQuiz";
-import { getFromLocalStorage, setToLocalStorage } from "./helpers/storage";
+import UserDetails from "./components/PublicQuiz/UserDetails";
+import VerifyQuiz from "./components/PublicQuiz/VerifyQuiz";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -83,14 +84,20 @@ const App = () => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/quiz/create" component={AddQuiz} />
-        <Route path="/:id/show" component={ShowQuiz} />
-        <Route exact path="/create/questions" component={AddQuestion} />
+        <Route exact path="/quizzes/:id/show" component={FetchQuiz} />
         <Route
           exact
-          path="/quiz/:quizId/question/:questionId"
+          path="/quizzes/:id/questions/create"
+          component={AddQuestion}
+        />
+        <Route
+          exact
+          path="/quiz/:quizId/question/:questionId/update"
           component={UpdateQuestion}
         />
-        <Route exact path="/public/:slug" component={PublicRoute} />
+        <Route exact path="/public/:slug" component={VerifyQuiz} />
+        <Route exact path="/public/:slug/attempt/new" component={UserDetails} />
+
         <PrivateRoute
           component={UpdateQuiz}
           condition={isLoggedIn}

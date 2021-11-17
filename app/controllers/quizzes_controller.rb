@@ -10,7 +10,7 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    quiz = Quiz.new(quiz_params.merge(user_id: @current_user.id))
+    quiz = @current_user.quizzes.new(quiz_params)
     if quiz.save
       render status: :ok,
         json: { notice: t("successfully_created", entity: "Quiz") }
@@ -32,17 +32,27 @@ class QuizzesController < ApplicationController
 
   def update
     authorize @quiz
-    if @quiz.update(quiz_params)
-      render status: :ok, json: { notice: t("successfully_updated", entity: "Quiz") }
+    if quiz_params[:publish] == true
+      @quiz.generate_slug
+      if @quiz.save
+        render status: :ok, json: { notice: "Quiz published" }
+      else
+        render status: :unprocessable_entity,
+          json: { error: @quiz.errors.full_messages.to_sentence }
+      end
     else
-      render status: :unprocessable_entity,
-        json: { error: @quiz.errors.full_messages.to_sentence }
+      if @quiz.update(quiz_params)
+        render status: :ok, json: { notice: t("successfully_updated", entity: "Quiz") }
+      else
+        render status: :unprocessable_entity,
+          json: { error: @quiz.errors.full_messages.to_sentence }
+      end
     end
   end
 
   def show
     authorize @quiz
-    @questions = @quiz.question
+    @questions = @quiz.questions
   end
 
   private
@@ -52,7 +62,8 @@ class QuizzesController < ApplicationController
     end
 
     def load_quiz
-      @quiz = Quiz.find_by(id: params[:id])
+      @quiz = @current_user.quizzes.find_by(id: params[:id])
+
       unless @quiz
         render status: :not_found, json: { error: t("quiz.not_found") }
       end

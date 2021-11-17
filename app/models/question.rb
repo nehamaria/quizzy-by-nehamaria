@@ -2,18 +2,23 @@
 
 class Question < ApplicationRecord
   validates :title, presence: true
-  validates :option1, presence: true
-  validates :option2, presence: true
-  validates :answer, presence: true
-  validate :answer_inclusion
   belongs_to :quiz
-  belongs_to :user
+  has_many :options, dependent: :destroy
+  has_many :attempted_answers, dependent: :destroy
+  accepts_nested_attributes_for :options, allow_destroy: true
+  before_validation :validate_options
 
   private
 
-    def answer_inclusion
-      unless [ option1, option2, option3, option4 ].include? answer
-        errors.add(:base, "Answer does not exist in options")
+    def validate_options
+      options = self.options
+      unless 2 <= options.length && options.length <= 4
+        errors.add(:base, t("question.should_have_minimum"))
+
       end
-    end
+      unless options.select { |option| option[:correct_answer] == true }.length == 1
+        errors.add(:base, t("option.should_have_only"))
+
+      end
+  end
 end

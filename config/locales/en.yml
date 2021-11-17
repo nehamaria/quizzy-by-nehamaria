@@ -34,8 +34,12 @@ en:
   successfully_created: "%{entity} was successfully created!"
   successfully_updated: "%{entity} was successfully updated!"
   successfully_deleted: "%{entity} was successfully deleted!"
+  not_found: "%{entity} not found!"
+  question:
+    should_have_minimum: "Question should have minimum 2 and atmost 4 options"
+  option:
+    should_have_only: "Option should have only one correct answer"
   
-
 
   authorization:
     denied: "Access denied. You are not authorized to perform this action."
