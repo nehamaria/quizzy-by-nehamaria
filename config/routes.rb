@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :quizzes, only: %i[show], param: :slug
     resources :users, only: %i[create], param: :slug
     resources :attempted_answers, only: %i[create]
-    resources :attempts, only: %i[show]
+    resources :attempts, only: %i[show index]
   end
   root "home#index"
   get "*path", to: "home#index", via: :all

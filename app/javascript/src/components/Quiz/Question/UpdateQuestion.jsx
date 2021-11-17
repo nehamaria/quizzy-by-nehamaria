@@ -1,6 +1,7 @@
+/* eslint-disable consistent-return */
 import React, { useState, useEffect } from "react";
 
-import { PageLoader } from "@bigbinary/neetoui/v2";
+import { PageLoader, Toastr } from "@bigbinary/neetoui/v2";
 import { useParams } from "react-router";
 
 import questionApi from "apis/question";
@@ -36,6 +37,9 @@ const UpdateQuestion = () => {
 
   const handleSubmit = async () => {
     try {
+      if (optionList[answer?.value]?.option === undefined) {
+        return Toastr.error(Error("Select valid option"));
+      }
       const payload = {
         question: {
           title: title,

@@ -15,7 +15,6 @@ const QuestionForm = ({
   answer,
   quizName,
 }) => {
-  // console.log(optionList);
   return (
     <div className="flex w-full justify-center">
       <div className="flex w-1/2 flex-col justify-start space-y-5">

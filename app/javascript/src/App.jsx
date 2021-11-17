@@ -12,6 +12,9 @@ import { resetAuthTokens } from "apis/axios";
 import { initializeLogger } from "common/logger";
 import Login from "components/Authentication/Login";
 import PrivateRoute from "components/Common/PrivateRoute";
+import Report from "components/PublicQuiz/Report";
+import UserDetails from "components/PublicQuiz/UserDetails";
+import VerifyQuiz from "components/PublicQuiz/VerifyQuiz";
 import AddQuiz from "components/Quiz/AddQuiz";
 import FetchQuiz from "components/Quiz/FetchQuiz";
 import AddQuestion from "components/Quiz/Question/AddQuestion";
@@ -19,9 +22,6 @@ import UpdateQuestion from "components/Quiz/Question/UpdateQuestion";
 import QuizList from "components/Quiz/QuizList";
 import UpdateQuiz from "components/Quiz/UpdateQuiz";
 import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
-
-import UserDetails from "./components/PublicQuiz/UserDetails";
-import VerifyQuiz from "./components/PublicQuiz/VerifyQuiz";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -74,7 +74,9 @@ const App = () => {
         actionBlock={
           isLoggedIn && (
             <div className="flex items-center underline pr-5">
-              <Button label="Report" style="text" />
+              <Link to="/report">
+                <Button label="Report" style="text" />
+              </Link>
               <Button label={user} style="text" />
               <Button label="Logout" style="text" onClick={handleLogout} />
             </div>
@@ -97,7 +99,7 @@ const App = () => {
         />
         <Route exact path="/public/:slug" component={VerifyQuiz} />
         <Route exact path="/public/:slug/attempt/new" component={UserDetails} />
-
+        <Route exact path="/report" component={Report} />
         <PrivateRoute
           component={UpdateQuiz}
           condition={isLoggedIn}

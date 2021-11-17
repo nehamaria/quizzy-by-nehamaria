@@ -1,6 +1,8 @@
 json.attempt do
   json.extract! @attempt,
-  :id
+  :id,
+  :correct_answers_count,
+  :incorrect_answers_count
   json.questions @attempt.quiz.questions do |question|
     json.question question
     json.options question.options
@@ -12,4 +14,6 @@ json.attempt do
 
   end
   json.quiz_name @attempt.quiz.title
+  json.correct_answers @attempt.correct_answers_count
+  json.incorrect_answers @attempt.incorrect_answers_count
 end
