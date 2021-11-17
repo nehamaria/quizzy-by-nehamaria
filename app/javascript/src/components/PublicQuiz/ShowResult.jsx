@@ -9,19 +9,11 @@ import attemptApi from "apis/attempt";
 const ShowResult = ({ attempt_id }) => {
   const [loading, setLoading] = useState(true);
   const [answers, setAnswers] = useState({});
-  const [number, setNumber] = useState(0);
 
   const fetchAttempt = async () => {
     try {
       const response = await attemptApi.getAttempt(attempt_id);
       setAnswers(response.data.attempt);
-      response.data.attempt.questions.forEach(question => {
-        const id = question.options.find(option => option.correct_answer).id;
-        const answer_id = response.data.attempt.attempt_answer.find(
-          answer => answer.question_id === question.question.id
-        ).attempted_answer;
-        if (String(id) === answer_id) setNumber(prev => prev + 1);
-      });
       setLoading(false);
     } catch (error) {
       logger.error(error);
@@ -36,9 +28,9 @@ const ShowResult = ({ attempt_id }) => {
     <div className=" flex flex-col space-y-5 m-8">
       <Typography style="h2">{answers.quiz_name}</Typography>
       <Typography style="h4">
-        Thank you for taking the quiz!Here are your results. You have submitted{" "}
-        {number} correct and {answers.questions.length - number} incorrect
-        answers
+        Thank you for taking the quiz! Here are your results. You have submitted{" "}
+        {answers.correct_answers} correct and {answers.incorrect_answers}{" "}
+        incorrect answers
       </Typography>
       {answers.questions.map((question, index) => (
         <div className="w-full neeto-ui-bg-gray-100 p-4 " key={index}>
@@ -82,7 +74,3 @@ const ShowResult = ({ attempt_id }) => {
 };
 
 export default ShowResult;
-
-// attempts -belong to a question
-
-//options - belong to a question
