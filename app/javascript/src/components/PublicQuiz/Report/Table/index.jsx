@@ -4,10 +4,10 @@ import { Download } from "@bigbinary/neeto-icons";
 import { Typography, Button, PageLoader } from "@bigbinary/neetoui/v2";
 import { useTable, useSortBy } from "react-table";
 
+import reportApi from "apis/report";
+
 import Body from "./Body";
 import Header from "./Header";
-
-import reportApi from "../../../../apis/report";
 
 const Table = ({ reports }) => {
   const [downloading, setDownloading] = useState(false);

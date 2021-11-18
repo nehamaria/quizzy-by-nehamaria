@@ -9,9 +9,9 @@ const LoginForm = ({ handleSubmit }) => {
   return (
     <div
       className="flex items-center justify-center min-h-screen
-      px-4 py-12 lg:px-8 bg-gray-50 sm:px-6 "
+      px-4 py-12 lg:px-8 sm:px-6 "
     >
-      <div className="w-full max-w-md ">
+      <div className="w-full max-w-md neeto-ui-bg-gray-100">
         <h2
           className="mt-6 text-3xl font-extrabold leading-9
           text-center text-bb-gray-700 "
@@ -27,7 +27,7 @@ const LoginForm = ({ handleSubmit }) => {
           })}
         >
           {({ isSubmitting }) => (
-            <Form className="flex flex-col mt-8 gap-y-6">
+            <Form className="flex flex-col mt-8 m-6 gap-y-6">
               <Input
                 label="Email"
                 name="email"
