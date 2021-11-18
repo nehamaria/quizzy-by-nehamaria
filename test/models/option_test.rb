@@ -7,24 +7,8 @@ class OptionTest < ActiveSupport::TestCase
     @user = create(:user)
     @quiz = create(:quiz, user: @user)
     @question = build(:question, quiz: @quiz)
-
-    # @quiz = @user.quizzes.new(
-    #   title: "This is the first title")
-    # @question = @quiz.questions.new(
-    #   title: "which planet is closest to sun",
-
-    # )
     @option = build(:option, question: @question)
     @option1 = build(:option, question: @question)
-
-    # @option = @question.options.new(
-    #   name: "This is the option content",
-    #   correct_answer: true
-    # )
-    # @option1 = @question.options.new(
-    #   name: "This is the 2nd option content",
-    #   correct_answer: false
-    # )
   end
 
   def test_valid_option

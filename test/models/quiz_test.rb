@@ -6,8 +6,6 @@ class QuizTest < ActiveSupport::TestCase
   def setup
     @user = create(:user)
     @quiz = create(:quiz, user_id: @user.id)
-    # @quiz = @user.quizzes.new(
-    #   title: "This is the first title")
   end
 
   def test_title_should_be_of_valid_length

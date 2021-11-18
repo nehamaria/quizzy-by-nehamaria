@@ -7,12 +7,6 @@ class QuestionTest < ActiveSupport::TestCase
     @user = create(:user)
     @quiz = create(:quiz, user: @user)
     @question = build(:question, quiz: @quiz)
-
-    # @quiz = @user.quizzes.new(
-    #   title: "This is the first title")
-    # @question = @quiz.questions.new(
-    #   title: "which planet is closest to sun",
-    # )
   end
 
   def test_valid_question
