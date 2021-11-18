@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 import { PageLoader, Toastr } from "@bigbinary/neetoui/v2";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 import questionApi from "apis/question";
 
@@ -16,6 +16,7 @@ const UpdateQuestion = () => {
   const [loading, setLoading] = useState(true);
   const [quizName, setQuizName] = useState("");
   const [options, setOptions] = useState([]);
+  const history = useHistory();
 
   const handleInputChange = (event, index) => {
     const { name, value } = event.target;
@@ -68,10 +69,8 @@ const UpdateQuestion = () => {
           }),
       ];
       await questionApi.update(quizId, questionId, payload);
-      setTimeout(
-        () => (window.location.href = `/quizzes/${quizId}/show`),
-        1000
-      );
+
+      setTimeout(() => history.goBack(), 1000);
     } catch (error) {
       logger.error(error);
     }
