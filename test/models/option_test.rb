@@ -19,6 +19,6 @@ class OptionTest < ActiveSupport::TestCase
     @option.name = nil
     puts @option.name
     assert_not @option.valid?
-    assert_includes @option.errors.full_messages, "Name can't be blank"
+    assert_includes @option.errors.full_messages, "can't be blank"
   end
 end
