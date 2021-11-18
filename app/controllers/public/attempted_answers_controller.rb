@@ -12,7 +12,7 @@ class Public::AttemptedAnswersController < ApplicationController
       attempt_answer = @attempt.attempted_answers.new(attempt_details)
       attempt_answer.save!
       option = Option.find_by_id(attempt_details[:attempted_answer])
-      if option.correct_answer
+      if option && option.correct_answer
         @correct_count += 1
       else
         @incorrect_count += 1

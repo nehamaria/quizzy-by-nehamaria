@@ -17,8 +17,10 @@ const QuestionForm = ({
 }) => {
   return (
     <div className="flex w-full justify-center">
-      <div className="flex w-1/2 flex-col justify-start space-y-5">
-        <Typography style="h1">{quizName}</Typography>
+      <div className="flex w-1/2 flex-col justify-start space-y-5 neeto-ui-bg-gray-100">
+        <Typography style="h1" className="m-4">
+          {quizName}
+        </Typography>
         <Input
           type="text"
           name="Title"
@@ -26,11 +28,12 @@ const QuestionForm = ({
           value={title}
           label={<Typography style="h3">Question</Typography>}
           onChange={e => setTitle(e.target.value)}
+          className="m-4"
         />
 
         {optionList.map((options, index) => {
           return (
-            <div className="flex space-y-5 space-x-3" key={index}>
+            <div className="flex space-y-5 space-x-3 m-4" key={index}>
               <Input
                 name={`option`}
                 value={options.option}
@@ -56,7 +59,7 @@ const QuestionForm = ({
         {optionList.length < 4 && (
           <Button
             style="secondary"
-            className="self-start"
+            className="self-start m-4"
             label={
               <Typography style="body1" weight="semi-bold">
                 Add Option
@@ -69,7 +72,7 @@ const QuestionForm = ({
         )}
         <Select
           label={
-            <Typography style="body1" weight="semi-bold">
+            <Typography style="body1" weight="semi-bold" className="m-4">
               Correct Answer
             </Typography>
           }
@@ -81,6 +84,7 @@ const QuestionForm = ({
             };
             handleSelectAnswer(event);
           }}
+          className="m-4"
           options={optionList.map((_, index) => {
             return { value: index, label: `Option ${index + 1}` };
           })}
@@ -93,7 +97,7 @@ const QuestionForm = ({
             </Typography>
           }
           onClick={handleSubmit}
-          className="self-start p-3"
+          className="self-start p-3 m-4 mb-2"
         />
       </div>
     </div>

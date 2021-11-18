@@ -4,7 +4,7 @@ import { Up, Down } from "@bigbinary/neeto-icons";
 
 const Header = ({ headerGroups }) => {
   return (
-    <thead className="text-left bg-gray-300 ">
+    <thead className="text-left bg-gray-400 ">
       {headerGroups.map((headerGroup, index) => (
         <tr key={index} {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map((column, idx) => (

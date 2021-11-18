@@ -20,7 +20,6 @@ const AttemptQuiz = ({ attempt_id, showResult, setShowResult }) => {
       attempted_answer: "",
     };
   });
-
   const fetchQuizDetails = async () => {
     try {
       const response = await quizApi.fetchQuiz(slug);

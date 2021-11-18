@@ -10,8 +10,8 @@ const UserDetailsForm = ({ handleSubmit }) => {
   const title = useParams();
   return (
     <div className="flex w-full justify-center ">
-      <div className="flex w-1/2 flex-col justify-start space-y-8">
-        <Typography style="h1" className="mt-5">
+      <div className="flex w-1/2 flex-col justify-start space-y-8 mt-32 neeto-ui-bg-gray-100">
+        <Typography style="h1" className="mt-5 m-4">
           Welcome to {title.slug}
         </Typography>
 
@@ -28,7 +28,7 @@ const UserDetailsForm = ({ handleSubmit }) => {
           })}
         >
           {({ isSubmitting }) => (
-            <Form className="flex flex-col mt-8 gap-y-6">
+            <Form className="flex flex-col mt-8 gap-y-6 m-4">
               <Input
                 label="First Name"
                 name="first_name"

@@ -75,7 +75,7 @@ const QuizTable = ({ quizzes, destroyQuiz }) => {
 
   return (
     <>
-      <Typography style="h2" className="pb-10">
+      <Typography style="h2" className="pb-10 ">
         List of Quizzes
       </Typography>
       <table {...getTableProps()} className="w-full ">

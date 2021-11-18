@@ -46,7 +46,7 @@ const QuizList = () => {
   return (
     <div className="flex justify-center w-full ">
       <div className="w-full max-w-6xl">
-        <div className="flex justify-end  py-8">
+        <div className="flex justify-end py-8 ">
           <Link to="/quiz/create">
             <Button
               icon={() => <Plus />}

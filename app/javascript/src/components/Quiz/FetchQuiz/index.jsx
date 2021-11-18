@@ -44,8 +44,8 @@ const FetchQuiz = () => {
 
   return (
     <div>
-      <div className="flex justify-between pt-24 w-full mb-1">
-        <Typography style="h1" className="pl-8 ">
+      <div className="flex justify-between  w-full mb-1">
+        <Typography style="h1" className="pl-8 mt-10">
           {quizDetails.title}
         </Typography>
         <div className="flex justify-end space-x-4 pr-4">
@@ -61,12 +61,12 @@ const FetchQuiz = () => {
               }
               icon={() => <Plus />}
               iconPosition="left"
-              className="mb-3"
+              className="mb-3 mt-10"
             />
           </Link>
           {quizDetails.questions.length > 0 && quizDetails.slug === null && (
             <Button
-              className="mb-3"
+              className="mb-3 mt-10"
               label={<Typography className="p-1">Publish</Typography>}
               onClick={handlePublish}
             />
