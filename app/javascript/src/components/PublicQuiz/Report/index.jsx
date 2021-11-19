@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { PageLoader } from "@bigbinary/neetoui/v2";
+import { PageLoader, Typography } from "@bigbinary/neetoui/v2";
 
 import attemptApi from "apis/attempt";
 
@@ -29,7 +29,11 @@ const Report = () => {
       {reports.length > 0 ? (
         <Table reports={reports} />
       ) : (
-        <div>No reports found</div>
+        <div>
+          <Typography style="h4" className="flex justify-center mt-48">
+            No reports found
+          </Typography>
+        </div>
       )}
     </>
   );

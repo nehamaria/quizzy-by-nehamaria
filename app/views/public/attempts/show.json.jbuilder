@@ -7,7 +7,7 @@ json.attempt do
     json.question question
     json.options question.options
   end
-  json.attempt_answer @attempt.attempted_answers do |attempted_answer|
+  json.attempt_answer @attempt.attempt_answers do |attempted_answer|
     json.question_id attempted_answer.question.id
     json.attempted_answer attempted_answer.attempted_answer #option_id
     json.correct_answer attempted_answer.question.options.select{|option|option.correct_answer}[0].id

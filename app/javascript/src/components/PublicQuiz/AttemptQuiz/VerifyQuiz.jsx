@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { PageLoader } from "@bigbinary/neetoui/v2";
 import { useHistory, useParams } from "react-router";
 
-import quizApi from "../../apis/quiz";
+import quizApi from "apis/quiz";
 
 const VerifyQuiz = () => {
   const { slug } = useParams();

@@ -28,7 +28,11 @@ const UpdateQuestion = () => {
 
   const handleRemoveClick = index => {
     const list = [...optionList];
+    if (answer.label == `Option ${index + 1}`) {
+      setAnswer("");
+    }
     list.splice(index, 1);
+
     setOptionList(list);
   };
 

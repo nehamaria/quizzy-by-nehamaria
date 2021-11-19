@@ -14,7 +14,6 @@ import Login from "components/Authentication/Login";
 import PrivateRoute from "components/Common/PrivateRoute";
 import Report from "components/PublicQuiz/Report";
 import UserDetails from "components/PublicQuiz/UserDetails";
-import VerifyQuiz from "components/PublicQuiz/VerifyQuiz";
 import AddQuiz from "components/Quiz/AddQuiz";
 import FetchQuiz from "components/Quiz/FetchQuiz";
 import AddQuestion from "components/Quiz/Question/AddQuestion";
@@ -22,6 +21,8 @@ import UpdateQuestion from "components/Quiz/Question/UpdateQuestion";
 import QuizList from "components/Quiz/QuizList";
 import UpdateQuiz from "components/Quiz/UpdateQuiz";
 import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
+
+import VerifyQuiz from "./components/PublicQuiz/AttemptQuiz/VerifyQuiz";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
