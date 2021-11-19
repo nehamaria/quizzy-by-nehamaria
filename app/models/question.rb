@@ -11,7 +11,7 @@ class Question < ApplicationRecord
   private
 
     def validate_options
-      options = self.options
+      options = self.options.select { |option| !option.marked_for_destruction? }
       unless 2 <= options.length && options.length <= 4
         errors.add(:base, t("question.should_have_minimum"))
 
