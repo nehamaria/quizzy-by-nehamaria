@@ -8,7 +8,7 @@ import { useParams } from "react-router";
 import attemptApi from "apis/attempt";
 import quizApi from "apis/quiz";
 
-import ShowResult from "../ShowResult";
+import ShowResult from "./ShowResult";
 
 const AttemptQuiz = ({ attempt_id, showResult, setShowResult }) => {
   const { slug } = useParams();
