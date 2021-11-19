@@ -4,7 +4,7 @@ class Question < ApplicationRecord
   validates :title, presence: true
   belongs_to :quiz
   has_many :options, dependent: :destroy
-  has_many :attempted_answers, dependent: :destroy
+  has_many :attempt_answers, dependent: :destroy
   accepts_nested_attributes_for :options, allow_destroy: true
   before_validation :validate_options
 

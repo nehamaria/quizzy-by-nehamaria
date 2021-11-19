@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :quizzes, only: %i[show], param: :slug
     resources :users, only: %i[create], param: :slug
-    resources :attempted_answers, only: %i[create]
+    resources :attempt_answers, only: %i[create]
     resources :attempts, only: %i[show index]
   end
   get "/export" => "reports#export"

@@ -10,7 +10,7 @@ class AttemptedAnswerTest < ActiveSupport::TestCase
     option2 = @question.options.new(name: "Option 2", correct_answer: false)
     @question.save!
 
-    @attempted_answer = create(:attempted_answer, question: @question, attempted_answer: option.id)
+    @attempted_answer = create(:attempt_answer, question: @question, attempted_answer: option.id)
   end
 
   def test_attempt_answers_should_be_valid

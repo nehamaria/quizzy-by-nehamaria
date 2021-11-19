@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Public::AttemptedAnswersController < ApplicationController
+class Public::AttemptAnswersController < ApplicationController
   before_action :load_attempt
   def create
     @correct_count = 0
@@ -9,7 +9,7 @@ class Public::AttemptedAnswersController < ApplicationController
       render status: :unprocessable_entity, json: { error: "Quiz has already been attended" }
     else
       load_params[:attempts].each do |attempt_details|
-      attempt_answer = @attempt.attempted_answers.new(attempt_details)
+      attempt_answer = @attempt.attempt_answers.new(attempt_details)
       attempt_answer.save!
       option = Option.find_by_id(attempt_details[:attempted_answer])
       if option && option.correct_answer
