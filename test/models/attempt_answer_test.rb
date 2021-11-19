@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class AttemptedAnswerTest < ActiveSupport::TestCase
+class AttemptAnswerTest < ActiveSupport::TestCase
   def setup
     @quiz = create(:quiz)
     @question = build(:question)
